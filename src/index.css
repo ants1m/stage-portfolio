@@ -13,3 +13,15 @@ body {
   background-color: #000;
   color: #fff;
 }
+
+.menu-overlay {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: right;
+  z-index: 2000; /* Lightbox uses ~1000 */
+}

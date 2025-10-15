@@ -6,142 +6,189 @@ import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/plugins/captions.css";
 
 function App() {
-  // Track which gallery is active
   const [activeGallery, setActiveGallery] = useState("home");
-
-  // Lightbox state
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  // Define galleries
+  // All galleries
   const galleries = {
-    home: [
-      { src: "/whereareyoumylovesfendonh-32.png", title: "Antigone 2" },
-    ],
+    home: [{ src: "/whereareyoumylovesfendonh-32.png", title: "Antigone 2" }],
     o_vasilikos: [
-      { src: "/o_vasiikos_theatro_simeio-102.jpg", title: "Antigone" },
-      { src: "/o_vasiikos_theatro_simeio-43.jpg", title: "Hamlet" },
+      { src: "/o_vasiikos_theatro_simeio-102.jpg", title: "Vasilikos" },
+      { src: "/o_vasiikos_theatro_simeio-43.jpg", title: "Vasilikos 2" },
+      { src: "/o_vasiikos_theatro_simeio-3.jpg", title: "Vasilikos 3" },
+      { src: "/o_vasiikos_theatro_simeio-89.jpg", title: "Vasilikos 4" },
+      { src: "/o_vasiikos_theatro_simeio-18.jpg", title: "Vasilikos 5" },
+      { src: "/o_vasiikos_theatro_simeio-41.jpg", title: "Vasilikos 6" },
+      { src: "/o_vasiikos_theatro_simeio-54.jpg", title: "Vasilikos 7" },
     ],
     giagia: [
-      { src: "/photo1.jpg", title: "Play 1" },
-      { src: "/photo2.jpg", title: "Play 2" },
+      { src: "/athensconservatoire_ptuxiakes_-57.png", title: "Giagia 1" },
+      { src: "/athensconservatoire_ptuxiakes_-60.png", title: "Giagia 2" },
+      { src: "/athensconservatoire_ptuxiakes_-61.png", title: "Giagia 3" },
+      { src: "/athensconservatoire_ptuxiakes_-62.png", title: "Giagia 4" },
     ],
     amphitheatriko: [
       { src: "/photo3.jpg", title: "Amphitheatriko 1" },
       { src: "/photo4.jpg", title: "Amphitheatriko 2" },
     ],
     whereareyoumylove: [
-      { src: "/photo5.jpg", title: "Where Is My Love 1" },
-      { src: "/photo6.jpg", title: "Where Is My Love 2" },
+      { src: "/whereareyoumylovesfendonh-2.png", title: "Where Are You My Love 1" },
+      { src: "/whereareyoumylovesfendonh-9 (2) copy.png", title: "Where Are You My Love 2" },
+      { src: "/whereareyoumylovesfendonh-11.png", title: "Where Are You My Love 3" },
+      { src: "/whereareyoumylovesfendonh-24.png", title: "Where Are You My Love 4" },
+      { src: "/whereareyoumylovesfendonh-25.png", title: "Where Are You My Love 5" },
+      { src: "/whereareyoumylovesfendonh-28.png", title: "Where Are You My Love 6" },
+      { src: "/whereareyoumylovesfendonh-32.png", title: "Where Are You My Love 7" },
     ],
   };
 
   // Current gallery
   const currentImages = galleries[activeGallery] || [];
 
+  // Menu items
+  const menuItems = [
+    { key: "home", label: "Home" },
+    { key: "o_vasilikos", label: "Ο Βασιλικός" },
+    { key: "giagia", label: "ΓΙΑΓΙΑ, ΟΛΑ ΜΙΑ ΜΕΡΑ ΘΑ ΠΕΘΑΝΟΥΝ" },
+    { key: "amphitheatriko", label: "ΑΜΦΙΘΕΑΤΡΙΚΟ" },
+    { key: "whereareyoumylove", label: "WHERE ARE YOU MY LOVE" },
+  ];
+
   return (
-    <div className="App" style={{ backgroundColor: "#000", color: "#fff" }}>
-      {/* HEADER MENU */}
-      <nav
+    <div
+      className="App"
+      style={{
+        backgroundColor: "#000",
+        color: "#fff",
+        minHeight: "100vh",
+        position: "relative",
+      }}
+    >
+      {/* MENU overlay */}
+      <div
         style={{
+          position: "absolute",
+          top: "50%",
+          right: "20rem",
+          transform: "translateY(-50%)",
           display: "flex",
-          justifyContent: "center",
-          gap: "2rem",
-          padding: "1rem",
-          backgroundColor: "rgba(0,0,0,0.8)",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
+          flexDirection: "column",
+          gap: "1.2rem",
+          textAlign: "right",
+          zIndex: 2000,
         }}
       >
-        <span
-          style={{ cursor: "pointer", color: activeGallery === "home" ? "red" : "white" }}
-          onClick={() => setActiveGallery("home")}
-        >
-          Home
-        </span>
-        <span
-          style={{ cursor: "pointer", color: activeGallery === "o_vasilikos" ? "red" : "white" }}
-          onClick={() => setActiveGallery("o_vasilikos")}
-        >
-          Ο Βασιλικός
-        </span>
-        <span
-          style={{ cursor: "pointer", color: activeGallery === "giagia" ? "red" : "white" }}
-          onClick={() => setActiveGallery("giagia")}
-        >
-          ΓΙΑΓΙΑ, ΟΛΑ ΜΙΑ ΜΕΡΑ ΘΑ ΠΕΘΑΝΟΥΝ
-        </span>
-        <span
-          style={{ cursor: "pointer", color: activeGallery === "amphitheatriko" ? "red" : "white" }}
-          onClick={() => setActiveGallery("amphitheatriko")}
-        >
-          ΑΜΦΙΘΕΑΤΡΙΚΟ
-        </span>
-        <span
-          style={{
-            cursor: "pointer",
-            color: activeGallery === "whereareyoumylove" ? "red" : "white",
-          }}
-          onClick={() => setActiveGallery("whereareyoumylove")}
-        >
-          WHERE ARE YOU MY LOVE
-        </span>
-      </nav>
+        {menuItems.map((item) => (
+          <span
+            key={item.key}
+            onClick={() => {
+              setActiveGallery(item.key);
+              setOpen(false);
+            }}
+            style={{
+              cursor: "pointer",
+              fontSize: activeGallery === item.key ? "1.6rem" : "1rem",
+              color: activeGallery === item.key ? "red" : "#aaa",
+              fontWeight: activeGallery === item.key ? "bold" : "normal",
+              transition: "all 0.3s ease",
+            }}
+          >
+            {item.label}
+          </span>
+        ))}
 
-      {/* PAGE CONTENT */}
-      <div style={{ paddingTop: "6rem", padding: "2rem" }}>
-        <h1 style={{ textAlign: "center" }}>
-          Stage Photography Portfolio
-        </h1>
-
-        {/* GALLERY GRID */}
-        <div
+        {/* Contact line (clickable mailto) */}
+        <a
+          href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-            gap: "1rem",
             marginTop: "2rem",
+            fontFamily: "'Times New Roman', serif",
+            fontStyle: "italic",
+            fontSize: "1rem",
+            color: "#ccc",
+            textDecoration: "none",
+            transition: "color 0.3s ease",
           }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#ccc")}
         >
-          {currentImages.map((img, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              style={{
-                overflow: "hidden",
-                borderRadius: "12px",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                setIndex(idx);
-                setOpen(true);
-              }}
-            >
-              <img
-                src={img.src}
-                alt={img.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </motion.div>
-          ))}
-        </div>
+          Contact to book your shoot
+        </a>
       </div>
 
-      {/* LIGHTBOX */}
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        index={index}
-        plugins={[Captions]}
-        slides={currentImages.map((img) => ({
-          src: img.src,
-          description: img.title,
-        }))}
-      />
+      {/* CONTENT */}
+      <div style={{ padding: "2rem" }}>
+        {activeGallery === "home" ? (
+          // Background image for home
+          <div
+            style={{
+              height: "100vh",
+              backgroundImage: `url(${currentImages[0].src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center 30%",
+              borderRadius: "12px",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.6)",
+            }}
+          />
+        ) : (
+          // Gallery grid for other sections
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "1rem",
+              marginTop: "2rem",
+            }}
+          >
+            {currentImages.map((img, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.05 }}
+                style={{
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  background: "#111",
+                  padding: "0.5rem",
+                }}
+                onClick={() => {
+                  setIndex(idx);
+                  setOpen(true);
+                }}
+              >
+                <img
+                  src={img.src}
+                  alt={img.title}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "200px",
+                    objectFit: "contain",
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* LIGHTBOX for galleries (not home) */}
+      {activeGallery !== "home" && (
+        <Lightbox
+          open={open}
+          close={() => setOpen(false)}
+          index={index}
+          plugins={[Captions]}
+          slides={currentImages.map((img) => ({
+            src: img.src,
+            description: img.title,
+          }))}
+        />
+      )}
     </div>
   );
 }
