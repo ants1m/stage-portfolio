@@ -10,7 +10,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  // All galleries
+  // --- Galleries ---
   const galleries = {
     home: [{ src: "/whereareyoumylovesfendonh-32.png", title: "Antigone 2" }],
     o_vasilikos: [
@@ -43,10 +43,8 @@ function App() {
     ],
   };
 
-  // Current gallery
   const currentImages = galleries[activeGallery] || [];
 
-  // Menu items
   const menuItems = [
     { key: "home", label: "Home" },
     { key: "o_vasilikos", label: "Ο Βασιλικός" },
@@ -65,18 +63,25 @@ function App() {
         position: "relative",
       }}
     >
-      {/* MENU overlay */}
+      {/* --- MENU overlay --- */}
       <div
         style={{
-          position: "absolute",
-          top: "50%",
-          right: "20rem",
-          transform: "translateY(-50%)",
+          position: "fixed",
+          top: activeGallery === "home" ? "50%" : "2rem",
+          right: activeGallery === "home" ? "20rem" : "50%",
+          transform:
+            activeGallery === "home"
+              ? "translateY(-50%)"
+              : "translateX(50%)", // Center horizontally at top
           display: "flex",
-          flexDirection: "column",
-          gap: "1.2rem",
-          textAlign: "right",
+          flexDirection: activeGallery === "home" ? "column" : "row",
+          gap: activeGallery === "home" ? "1.2rem" : "2.5rem",
+          textAlign: activeGallery === "home" ? "right" : "center",
           zIndex: 2000,
+          background: activeGallery === "home" ? "none" : "rgba(0,0,0,0.6)",
+          padding: activeGallery === "home" ? "0" : "1rem 1.5rem",
+          borderRadius: activeGallery === "home" ? "0" : "10px",
+          transition: "all 0.6s ease",
         }}
       >
         {menuItems.map((item) => (
@@ -92,17 +97,18 @@ function App() {
               color: activeGallery === item.key ? "red" : "#aaa",
               fontWeight: activeGallery === item.key ? "bold" : "normal",
               transition: "all 0.3s ease",
+              whiteSpace: "nowrap",
             }}
           >
             {item.label}
           </span>
         ))}
 
-        {/* Contact line (clickable mailto) */}
+        {/* --- Contact line --- */}
         <a
           href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
           style={{
-            marginTop: "2rem",
+            marginTop: activeGallery === "home" ? "2rem" : "0",
             fontFamily: "'Times New Roman', serif",
             fontStyle: "italic",
             fontSize: "1rem",
@@ -117,7 +123,7 @@ function App() {
         </a>
       </div>
 
-      {/* CONTENT */}
+      {/* --- CONTENT --- */}
       <div style={{ padding: "2rem" }}>
         {activeGallery === "home" ? (
           // Background image for home
@@ -132,13 +138,16 @@ function App() {
             }}
           />
         ) : (
-          // Gallery grid for other sections
+          // --- Gallery grid ---
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gridTemplateColumns: "repeat(5, 1fr)",
               gap: "1rem",
-              marginTop: "2rem",
+              marginTop: "8rem",
+              justifyItems: "center",
+              alignItems: "center",
+              padding: "0 4rem",
             }}
           >
             {currentImages.map((img, idx) => (
@@ -148,13 +157,10 @@ function App() {
                 style={{
                   overflow: "hidden",
                   borderRadius: "12px",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
                   cursor: "pointer",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  background: "#111",
-                  padding: "0.5rem",
                 }}
                 onClick={() => {
                   setIndex(idx);
@@ -166,8 +172,9 @@ function App() {
                   alt={img.title}
                   style={{
                     maxWidth: "100%",
-                    maxHeight: "200px",
+                    maxHeight: "300px",
                     objectFit: "contain",
+                    borderRadius: "6px",
                   }}
                 />
               </motion.div>
@@ -176,7 +183,7 @@ function App() {
         )}
       </div>
 
-      {/* LIGHTBOX for galleries (not home) */}
+      {/* --- LIGHTBOX --- */}
       {activeGallery !== "home" && (
         <Lightbox
           open={open}
