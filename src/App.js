@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Captions from "yet-another-react-lightbox/plugins/captions";
@@ -9,6 +9,7 @@ function App() {
   const [activeGallery, setActiveGallery] = useState("home");
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const [showInfo, setShowInfo] = useState(false);
 
   // --- Galleries ---
   const galleries = {
@@ -53,6 +54,26 @@ function App() {
     { key: "whereareyoumylove", label: "WHERE ARE YOU MY LOVE" },
   ];
 
+  // --- Info text per gallery ---
+  const infoTexts = {
+    o_vasilikos: `
+      <strong>Σκηνοθεσία:</strong> Κωνσταντίνος Χειλάς<br/>
+      <strong>Σκηνογραφία – Φωτισμοί:</strong> Ζωή Μολυβδά Φαμέλη<br/>
+      <strong>Επιμέλεια Κίνησης:</strong> Αγγελική Τρομπούκη<br/>
+      <strong>Ενδυματολογία:</strong> Ανδρομάχη Ζαχαριά<br/>
+      <strong>Φωτογραφίες:</strong> Αλέξανδρος Σταματάρης<br/>
+      <strong>Βοηθός Σκηνοθέτη:</strong> Βασιλική Κουλουμπή<br/><br/>
+      <strong>Παίζουν [αλφαβητικά]:</strong> Μαρία Αποστολακέα, Δανάη Αναστασία Γεωργούλα, 
+      Κωνσταντίνος Γώγουλος, Παναγιώτης Παπαϊωάννου, Θανάσης Ρέστας, Χριστίνα Χειλά Φαμέλη<br/><br/>
+      Θέατρο Σημείο, Χαρ. Τρικούπη 4, Καλλιθέα<br/>
+      Από 27 Ιανουαρίου 2025 έως τέλη Μαρτίου 2025
+    `,
+  };
+
+  const getInfoText = () => {
+    return infoTexts[activeGallery] || "Information for this production will be available soon.";
+  };
+
   return (
     <div
       className="App"
@@ -66,22 +87,18 @@ function App() {
       {/* --- MENU overlay --- */}
       <div
         style={{
-          position: "fixed",
+          position: activeGallery === "home" ? "absolute" : "fixed",
           top: activeGallery === "home" ? "50%" : "2rem",
           right: activeGallery === "home" ? "20rem" : "50%",
           transform:
             activeGallery === "home"
               ? "translateY(-50%)"
-              : "translateX(50%)", // Center horizontally at top
+              : "translateX(50%)",
           display: "flex",
           flexDirection: activeGallery === "home" ? "column" : "row",
-          gap: activeGallery === "home" ? "1.2rem" : "2.5rem",
+          gap: activeGallery === "home" ? "1.2rem" : "2rem",
           textAlign: activeGallery === "home" ? "right" : "center",
           zIndex: 2000,
-          background: activeGallery === "home" ? "none" : "rgba(0,0,0,0.6)",
-          padding: activeGallery === "home" ? "0" : "1rem 1.5rem",
-          borderRadius: activeGallery === "home" ? "0" : "10px",
-          transition: "all 0.6s ease",
         }}
       >
         {menuItems.map((item) => (
@@ -90,6 +107,7 @@ function App() {
             onClick={() => {
               setActiveGallery(item.key);
               setOpen(false);
+              setShowInfo(false);
             }}
             style={{
               cursor: "pointer",
@@ -97,14 +115,12 @@ function App() {
               color: activeGallery === item.key ? "red" : "#aaa",
               fontWeight: activeGallery === item.key ? "bold" : "normal",
               transition: "all 0.3s ease",
-              whiteSpace: "nowrap",
             }}
           >
             {item.label}
           </span>
         ))}
 
-        {/* --- Contact line --- */}
         <a
           href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
           style={{
@@ -114,19 +130,15 @@ function App() {
             fontSize: "1rem",
             color: "#ccc",
             textDecoration: "none",
-            transition: "color 0.3s ease",
           }}
-          onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-          onMouseOut={(e) => (e.currentTarget.style.color = "#ccc")}
         >
           Contact to book your shoot
         </a>
       </div>
 
       {/* --- CONTENT --- */}
-      <div style={{ padding: "2rem" }}>
+      <div style={{ padding: "2rem", position: "relative" }}>
         {activeGallery === "home" ? (
-          // Background image for home
           <div
             style={{
               height: "100vh",
@@ -138,52 +150,116 @@ function App() {
             }}
           />
         ) : (
-          // --- Gallery grid ---
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: "1rem",
-              marginTop: "8rem",
-              justifyItems: "center",
-              alignItems: "center",
-              padding: "0 4rem",
-            }}
-          >
-            {currentImages.map((img, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.05 }}
+          <>
+            {/* More Info Button */}
+            <div
+              style={{
+                position: "absolute",
+                top: "1rem",
+                right: "2rem",
+                zIndex: 1000,
+              }}
+            >
+              <button
+                onClick={() => setShowInfo(true)}
                 style={{
-                  overflow: "hidden",
-                  borderRadius: "12px",
+                  background: "none",
+                  color: "#fff",
+                  border: "1px solid #fff",
+                  padding: "0.4rem 0.9rem",
+                  borderRadius: "6px",
                   cursor: "pointer",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                onClick={() => {
-                  setIndex(idx);
-                  setOpen(true);
+                  transition: "all 0.3s ease",
                 }}
               >
-                <img
-                  src={img.src}
-                  alt={img.title}
+                More Info
+              </button>
+            </div>
+
+            {/* Gallery Grid */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "1rem",
+                justifyItems: "center",
+                marginTop: "3rem",
+              }}
+            >
+              {currentImages.map((img, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ scale: 1.05 }}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "300px",
-                    objectFit: "contain",
-                    borderRadius: "6px",
+                    overflow: "hidden",
+                    borderRadius: "12px",
+                    cursor: "pointer",
                   }}
-                />
-              </motion.div>
-            ))}
-          </div>
+                  onClick={() => {
+                    setIndex(idx);
+                    setOpen(true);
+                  }}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "300px",
+                      objectFit: "contain",
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </>
         )}
       </div>
 
-      {/* --- LIGHTBOX --- */}
+      {/* --- Overlay Info --- */}
+      <AnimatePresence>
+        {showInfo && (
+          <motion.div
+            key="overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            onClick={() => setShowInfo(false)}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              background: "rgba(0,0,0,0.8)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 3000,
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                background: "transparent",
+                color: "#fff",
+                padding: "2rem",
+                maxWidth: "600px",
+                textAlign: "center",
+                lineHeight: "1.8",
+              }}
+              dangerouslySetInnerHTML={{ __html: getInfoText() }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Lightbox */}
       {activeGallery !== "home" && (
         <Lightbox
           open={open}
