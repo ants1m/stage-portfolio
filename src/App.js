@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Captions from "yet-another-react-lightbox/plugins/captions";
@@ -11,13 +11,13 @@ function App() {
   const [index, setIndex] = useState(0);
   const [showInfo, setShowInfo] = useState(false);
 
-  // --- Galleries ---
+  // --- All galleries ---
   const galleries = {
     home: [{ src: "/whereareyoumylovesfendonh-32.png", title: "Antigone 2" }],
     o_vasilikos: [
       { src: "/o_vasiikos_theatro_simeio-102.jpg", title: "Vasilikos" },
       { src: "/o_vasiikos_theatro_simeio-43.jpg", title: "Vasilikos 2" },
-      { src: "/o_vasiikos_theatro_simeio-3.jpg", title: "Vasilikos 3" },
+      { src: "/o_vasiikos_theatro_simeio-3.avif", title: "Vasilikos 3" },
       { src: "/o_vasiikos_theatro_simeio-89.jpg", title: "Vasilikos 4" },
       { src: "/o_vasiikos_theatro_simeio-18.jpg", title: "Vasilikos 5" },
       { src: "/o_vasiikos_theatro_simeio-41.jpg", title: "Vasilikos 6" },
@@ -34,17 +34,45 @@ function App() {
       { src: "/photo4.jpg", title: "Amphitheatriko 2" },
     ],
     whereareyoumylove: [
-      { src: "/whereareyoumylovesfendonh-2.png", title: "Where Are You My Love 1" },
-      { src: "/whereareyoumylovesfendonh-9 (2) copy.png", title: "Where Are You My Love 2" },
-      { src: "/whereareyoumylovesfendonh-11.png", title: "Where Are You My Love 3" },
-      { src: "/whereareyoumylovesfendonh-24.png", title: "Where Are You My Love 4" },
-      { src: "/whereareyoumylovesfendonh-25.png", title: "Where Are You My Love 5" },
-      { src: "/whereareyoumylovesfendonh-28.png", title: "Where Are You My Love 6" },
-      { src: "/whereareyoumylovesfendonh-32.png", title: "Where Are You My Love 7" },
+      { src: "/whereareyoumylovesfendonh-2 copy.avif", title: "Where Are You My Love 1" },
+      { src: "/whereareyoumylovesfendonh-9 (2) copy.avif", title: "Where Are You My Love 2" },
+      { src: "/whereareyoumylovesfendonh-11 copy.avif", title: "Where Are You My Love 3" },
+      { src: "/whereareyoumylovesfendonh-24 copy.avif", title: "Where Are You My Love 4" },
+      { src: "/whereareyoumylovesfendonh-25 copy.avif", title: "Where Are You My Love 5" },
+      { src: "/whereareyoumylovesfendonh-28 copy.avif", title: "Where Are You My Love 6" },
+      { src: "/whereareyoumylovesfendonh-32 copy.avif", title: "Where Are You My Love 7" },
     ],
   };
 
   const currentImages = galleries[activeGallery] || [];
+
+  // --- Info text for each show ---
+  const infoTexts = {
+    o_vasilikos: `
+Σκηνοθεσία: Κωνσταντίνος Χειλάς
+Σκηνογραφία – Φωτισμοί: Ζωή Μολυβδά Φαμέλη
+Επιμέλεια Κίνησης: Αγγελική Τρομπούκη
+Ενδυματολογία: Ανδρομάχη Ζαχαριά
+Φωτογραφίες: Αλέξανδρος Σταματάρης
+Βοηθός Σκηνοθέτη: Βασιλική Κουλουμπή
+
+Παίζουν [αλφαβητικά]: Μαρία Αποστολακέα, Δανάη Αναστασία Γεωργούλα, Κωνσταντίνος Γώγουλος, Παναγιώτης Παπαϊωάννου, Θανάσης Ρέστας, Χριστίνα Χειλά Φαμέλη
+
+Θέατρο Σημείο, Χαρ. Τρικούπη 4, Καλλιθέα
+Από 27 Ιανουαρίου 2025 εώς τέλη Μαρτίου 2025
+    `,
+    whereareyoumylove: `
+Σκηνοθεσία: Χάρης Φραγκούλης
+Βοηθός σκηνοθέτη: Άννα Βλάχου
+Φώτα: Βαγγέλης Σαγρής
+Κοστούμια: Δήμητρα Ρίζου
+Αφίσα: Γιάννης Χαριτίδης
+Οργάνωση παραγωγής: TooFarEast
+Εκτέλεση παραγωγής: Σέτα Αστραίου Καρύδη
+
+Παίζουν: Νικόλας Αγαπίου, Σαβίνα Αλεβιζάκη, Άννα Βλάχου, Μαρία Θανασάκη, Ιωσήφ Καμπουράκης, Ευανθία Κιάκο, Αλέξανδρος Κώτης, Αναστασία Λεωνίδου, Βικτωρία Λυδατάκη, Μαριάννα Ζωή Μαριγώνη, Κωνσταντίνα Μέσσιου, Όλγα Μιχαλοπούλου, Μικαέλα Μπραούνου, Αντιγόνη Παπαποστόλου, Τάσος Πετρίτσης, Ράνια Πολυχρονάκη, Παναγιώτης Ρενιέρης, Δήμητρα Ρίζου, Ναϊάδα Σαγρή, Αγγελική Σιτρά, Κατερίνα Τοκμακτσή
+    `,
+  };
 
   const menuItems = [
     { key: "home", label: "Home" },
@@ -53,25 +81,6 @@ function App() {
     { key: "amphitheatriko", label: "ΑΜΦΙΘΕΑΤΡΙΚΟ" },
     { key: "whereareyoumylove", label: "WHERE ARE YOU MY LOVE" },
   ];
-
-  // --- Info text per gallery ---
-  const infoTexts = {
-    o_vasilikos: `
-      <strong>Σκηνοθεσία:</strong> Κωνσταντίνος Χειλάς<br/>
-      <strong>Σκηνογραφία – Φωτισμοί:</strong> Ζωή Μολυβδά Φαμέλη<br/>
-      <strong>Επιμέλεια Κίνησης:</strong> Αγγελική Τρομπούκη<br/>
-      <strong>Ενδυματολογία:</strong> Ανδρομάχη Ζαχαριά<br/>
-      <strong>Βοηθός Σκηνοθέτη:</strong> Βασιλική Κουλουμπή<br/><br/>
-      <strong>Παίζουν [αλφαβητικά]:</strong> Μαρία Αποστολακέα, Δανάη Αναστασία Γεωργούλα, 
-      Κωνσταντίνος Γώγουλος, Παναγιώτης Παπαϊωάννου, Θανάσης Ρέστας, Χριστίνα Χειλά Φαμέλη<br/><br/>
-      Θέατρο Σημείο, Χαρ. Τρικούπη 4, Καλλιθέα<br/>
-      Από 27 Ιανουαρίου 2025 έως τέλη Μαρτίου 2025
-    `,
-  };
-
-  const getInfoText = () => {
-    return infoTexts[activeGallery] || "Information for this production will be available soon.";
-  };
 
   return (
     <div
@@ -86,18 +95,21 @@ function App() {
       {/* --- MENU overlay --- */}
       <div
         style={{
-          position: activeGallery === "home" ? "absolute" : "fixed",
-          top: activeGallery === "home" ? "50%" : "2rem",
-          right: activeGallery === "home" ? "20rem" : "50%",
+          position: "absolute",
+          top: activeGallery === "home" ? "50%" : "1rem",
+          right: activeGallery === "home" ? "20rem" : "auto",
+          left: activeGallery === "home" ? "auto" : "50%",
           transform:
             activeGallery === "home"
               ? "translateY(-50%)"
-              : "translateX(50%)",
+              : "translateX(-50%)",
           display: "flex",
           flexDirection: activeGallery === "home" ? "column" : "row",
           gap: activeGallery === "home" ? "1.2rem" : "2rem",
           textAlign: activeGallery === "home" ? "right" : "center",
+          justifyContent: activeGallery === "home" ? "flex-end" : "center",
           zIndex: 2000,
+          width: activeGallery === "home" ? "auto" : "100%",
         }}
       >
         {menuItems.map((item) => (
@@ -120,23 +132,47 @@ function App() {
           </span>
         ))}
 
+        {/* --- Contact line --- */}
         <a
           href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
           style={{
-            marginTop: activeGallery === "home" ? "2rem" : "0",
             fontFamily: "'Times New Roman', serif",
             fontStyle: "italic",
             fontSize: "1rem",
             color: "#ccc",
             textDecoration: "none",
+            transition: "color 0.3s ease",
           }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#ccc")}
         >
           Contact to book your shoot
         </a>
+
+        {/* --- More Info button --- */}
+        {infoTexts[activeGallery] && (
+          <span
+            onClick={() => setShowInfo(true)}
+            style={{
+              cursor: "pointer",
+              fontSize: "1rem",
+              color: "#ccc",
+              textDecoration: "underline",
+              position: "absolute",
+              right: "2rem",
+              top: "1.2rem",
+              transition: "color 0.3s ease",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "#ccc")}
+          >
+            More Info
+          </span>
+        )}
       </div>
 
       {/* --- CONTENT --- */}
-      <div style={{ padding: "2rem", position: "relative" }}>
+      <div style={{ padding: "2rem" }}>
         {activeGallery === "home" ? (
           <div
             style={{
@@ -149,116 +185,50 @@ function App() {
             }}
           />
         ) : (
-          <>
-            {/* More Info Button */}
-            <div
-              style={{
-                position: "absolute",
-                top: "1rem",
-                right: "2rem",
-                zIndex: 1000,
-              }}
-            >
-              <button
-                onClick={() => setShowInfo(true)}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "1rem",
+              marginTop: "4rem",
+              justifyItems: "center",
+              alignItems: "center",
+            }}
+          >
+            {currentImages.map((img, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.05 }}
                 style={{
-                  background: "none",
-                  color: "#fff",
-                  border: "1px solid #fff",
-                  padding: "0.4rem 0.9rem",
-                  borderRadius: "6px",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
                   cursor: "pointer",
-                  transition: "all 0.3s ease",
+                  background: "transparent",
+                  padding: "0.5rem",
+                }}
+                onClick={() => {
+                  setIndex(idx);
+                  setOpen(true);
                 }}
               >
-                More Info
-              </button>
-            </div>
-
-            {/* Gallery Grid */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
-                gap: "1rem",
-                justifyItems: "center",
-                marginTop: "3rem",
-              }}
-            >
-              {currentImages.map((img, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ scale: 1.05 }}
+                <img
+                  src={img.src}
+                  alt={img.title}
                   style={{
-                    overflow: "hidden",
-                    borderRadius: "12px",
-                    cursor: "pointer",
+                    maxWidth: "100%",
+                    maxHeight: "300px",
+                    objectFit: "contain",
+                    borderRadius: "6px",
                   }}
-                  onClick={() => {
-                    setIndex(idx);
-                    setOpen(true);
-                  }}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.title}
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "300px",
-                      objectFit: "contain",
-                    }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </>
+                />
+              </motion.div>
+            ))}
+          </div>
         )}
       </div>
 
-      {/* --- Overlay Info --- */}
-      <AnimatePresence>
-        {showInfo && (
-          <motion.div
-            key="overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            onClick={() => setShowInfo(false)}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              background: "rgba(0,0,0,0.8)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 3000,
-            }}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                background: "transparent",
-                color: "#fff",
-                padding: "2rem",
-                maxWidth: "600px",
-                textAlign: "center",
-                lineHeight: "1.8",
-              }}
-              dangerouslySetInnerHTML={{ __html: getInfoText() }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Lightbox */}
+      {/* --- LIGHTBOX --- */}
       {activeGallery !== "home" && (
         <Lightbox
           open={open}
@@ -270,6 +240,40 @@ function App() {
             description: img.title,
           }))}
         />
+      )}
+
+      {/* --- INFO OVERLAY --- */}
+      {showInfo && (
+        <div
+          onClick={() => setShowInfo(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.85)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 3000,
+            transition: "opacity 0.4s ease",
+          }}
+        >
+          <div
+            style={{
+              maxWidth: "600px",
+              padding: "2rem",
+              color: "#fff",
+              textAlign: "center",
+              whiteSpace: "pre-line",
+              lineHeight: "1.6",
+              fontSize: "1.1rem",
+            }}
+          >
+            {infoTexts[activeGallery]}
+          </div>
+        </div>
       )}
     </div>
   );
