@@ -10,37 +10,139 @@ function App() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [showInfo, setShowInfo] = useState(false);
+  const [showHotspots, setShowHotspots] = useState(false);
 
-  // --- All galleries ---
+  // --- All galleries with OPTIONAL hotspots ---
   const galleries = {
-    home: [{ src: "/whereareyoumylovesfendonh-32.png", title: "Antigone 2" }],
+    home: [
+      {
+        src: "/whereareyoumylovesfendonh-32.png",
+        title: "Antigone 2",
+      },
+    ],
     o_vasilikos: [
-      { src: "/o_vasiikos_theatro_simeio-102.jpg", title: "Vasilikos" },
-      { src: "/o_vasiikos_theatro_simeio-43.jpg", title: "Vasilikos 2" },
-      { src: "/o_vasiikos_theatro_simeio-3.avif", title: "Vasilikos 3" },
-      { src: "/o_vasiikos_theatro_simeio-89.jpg", title: "Vasilikos 4" },
-      { src: "/o_vasiikos_theatro_simeio-18.jpg", title: "Vasilikos 5" },
-      { src: "/o_vasiikos_theatro_simeio-41.jpg", title: "Vasilikos 6" },
-      { src: "/o_vasiikos_theatro_simeio-54.jpg", title: "Vasilikos 7" },
+      {
+        src: "/o_vasiikos_theatro_simeio-102.jpg",
+        title: "Vasilikos",
+        // Example hotspots – adjust x/y as you like
+        hotspots: [
+          {
+            x: "42%", // Χριστίνα, left
+            y: "30%",
+            label: "Χριστίνα Χειλά-Φαμέλη",
+          },
+          {
+            x: "57%", // Κωνσταντίνος, right
+            y: "50%",
+            label: "Κωνσταντίνος Γώγουλος",
+          },
+        ],
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-43.jpg",
+        title: "Vasilikos 2",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-3.avif",
+        title: "Vasilikos 3",
+        // 4 hotspots for the seated + standing actors
+        hotspots: [
+          {
+            x: "26%",
+            y: "72%",
+            label: "Δανάη Αναστασία Γεωργούλα",
+          },
+          {
+            x: "49%",
+            y: "60%",
+            label: "Χριστίνα Χειλά-Φαμέλη",
+          },
+          {
+            x: "63%",
+            y: "92%",
+            label: "Κωνσταντίνος Γώγουλος",
+          },
+          {
+            x: "82%",
+            y: "63%",
+            label: "Παναγιώτης Παπαϊωάννου",
+          },
+        ],
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-89.jpg",
+        title: "Vasilikos 4",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-18.jpg",
+        title: "Vasilikos 5",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-41.jpg",
+        title: "Vasilikos 6",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-54.jpg",
+        title: "Vasilikos 7",
+      },
     ],
     giagia: [
-      { src: "/athensconservatoire_ptuxiakes_-57.png", title: "Giagia 1" },
-      { src: "/athensconservatoire_ptuxiakes_-60.png", title: "Giagia 2" },
-      { src: "/athensconservatoire_ptuxiakes_-61.png", title: "Giagia 3" },
-      { src: "/athensconservatoire_ptuxiakes_-62.png", title: "Giagia 4" },
+      {
+        src: "/athensconservatoire_ptuxiakes_-57.png",
+        title: "Giagia 1",
+      },
+      {
+        src: "/athensconservatoire_ptuxiakes_-60.png",
+        title: "Giagia 2",
+      },
+      {
+        src: "/athensconservatoire_ptuxiakes_-61.png",
+        title: "Giagia 3",
+      },
+      {
+        src: "/athensconservatoire_ptuxiakes_-62.png",
+        title: "Giagia 4",
+      },
     ],
     amphitheatriko: [
-      { src: "/photo3.jpg", title: "Amphitheatriko 1" },
-      { src: "/photo4.jpg", title: "Amphitheatriko 2" },
+      {
+        src: "/photo3.jpg",
+        title: "Amphitheatriko 1",
+      },
+      {
+        src: "/photo4.jpg",
+        title: "Amphitheatriko 2",
+      },
     ],
     whereareyoumylove: [
-      { src: "/whereareyoumylovesfendonh-2 copy.avif", title: "Where Are You My Love 1" },
-      { src: "/whereareyoumylovesfendonh-9 (2) copy.avif", title: "Where Are You My Love 2" },
-      { src: "/whereareyoumylovesfendonh-11 copy.avif", title: "Where Are You My Love 3" },
-      { src: "/whereareyoumylovesfendonh-24 copy.avif", title: "Where Are You My Love 4" },
-      { src: "/whereareyoumylovesfendonh-25 copy.avif", title: "Where Are You My Love 5" },
-      { src: "/whereareyoumylovesfendonh-28 copy.avif", title: "Where Are You My Love 6" },
-      { src: "/whereareyoumylovesfendonh-32 copy.avif", title: "Where Are You My Love 7" },
+      {
+        src: "/whereareyoumylovesfendonh-2 copy.avif",
+        title: "Where Are You My Love 1",
+      },
+      {
+        src: "/whereareyoumylovesfendonh-9 (2) copy.avif",
+        title: "Where Are You My Love 2",
+      },
+      {
+        src: "/whereareyoumylovesfendonh-11 copy.avif",
+        title: "Where Are You My Love 3",
+      },
+      {
+        src: "/whereareyoumylovesfendonh-24 copy.avif",
+        title: "Where Are You My Love 4",
+      },
+      {
+        src: "/whereareyoumylovesfendonh-25 copy.avif",
+        title: "Where Are You My Love 5",
+      },
+      {
+        src: "/whereareyoumylovesfendonh-28 copy.avif",
+        title: "Where Are You My Love 6",
+      },
+      {
+        src: "/whereareyoumylovesfendonh-32 copy.avif",
+        title: "Where Are You My Love 7",
+      },
     ],
   };
 
@@ -210,6 +312,7 @@ function App() {
                 onClick={() => {
                   setIndex(idx);
                   setOpen(true);
+                  setShowHotspots(false);
                 }}
               >
                 <img
@@ -228,17 +331,73 @@ function App() {
         )}
       </div>
 
-      {/* --- LIGHTBOX --- */}
+      {/* --- LIGHTBOX with custom slide for hotspots --- */}
       {activeGallery !== "home" && (
         <Lightbox
           open={open}
-          close={() => setOpen(false)}
+          close={() => {
+            setOpen(false);
+            setShowHotspots(false);
+          }}
           index={index}
           plugins={[Captions]}
+          // keep title as caption text
           slides={currentImages.map((img) => ({
-            src: img.src,
+            ...img,
             description: img.title,
           }))}
+          render={{
+            slide: ({ slide }) => (
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onMouseEnter={() => setShowHotspots(true)}
+                onMouseLeave={() => setShowHotspots(false)}
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.title}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
+
+                {slide.hotspots &&
+                  slide.hotspots.map((spot, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        position: "absolute",
+                        left: spot.x,
+                        top: spot.y,
+                        transform: "translate(-50%, -50%)",
+                        padding: "0.5rem 1rem",
+                        borderRadius: "6px",
+                        backgroundColor: "rgba(0,0,0,0.55)",
+                        color: "#fff",
+                        fontSize: "0.9rem",
+                        whiteSpace: "nowrap",
+                        border: "1px solid rgba(255,255,255,0.25)",
+                        opacity: showHotspots ? 1 : 0,
+                        transition: "opacity 0.3s ease",
+                        pointerEvents: "none", // so clicks go to lightbox
+                      }}
+                    >
+                      {spot.label}
+                    </div>
+                  ))}
+              </div>
+            ),
+          }}
         />
       )}
 
