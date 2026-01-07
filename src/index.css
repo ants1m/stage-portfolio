@@ -5,7 +5,6 @@
   font-style: normal;
 }
 
-
 body {
   margin: 0;
   padding: 0;
@@ -14,14 +13,151 @@ body {
   color: #fff;
 }
 
-.menu-overlay {
+/* ---- TAG STYLES (add these at the bottom) ---- */
+
+.tag-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #000;
+}
+
+.tag-label {
+  margin-top: 4px;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tag-point:hover .tag-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- RESPONSIVE LAYOUT ---- */
+
+/* Default (Desktop) Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 4rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.app-container {
+  padding: 2rem;
+}
+
+/* Home Hero Image Textures/Styles */
+.home-hero-image {
+  height: 100vh;
+  /* Background image set inline in JS or via variable */
+  background-size: cover;
+  background-position: center 30%;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* More Info Button Defaults (Desktop) */
+.more-info-button {
+  cursor: pointer;
+  font-size: 1rem;
+  color: #ccc;
+  text-decoration: underline;
   position: absolute;
-  top: 50%;
   right: 2rem;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  text-align: right;
-  z-index: 2000; /* Lightbox uses ~1000 */
+  top: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.more-info-button:hover {
+  color: #fff;
+}
+
+/* Mobile Grid */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    margin-top: 1rem !important;
+    /* Adjusted for bottom menu */
+  }
+
+  /* Mobile container padding adjustment */
+  .app-container {
+    padding: 1rem !important;
+    padding-bottom: 8rem !important;
+    /* Space for bottom fixed menu */
+  }
+
+  /* Mobile Menu Overrides */
+  .menu-container {
+    /* Reset positioning to be bottom-fixed or consistent */
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+
+    /* Layout */
+    flex-direction: column !important;
+    /* Stack items vertically */
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.8rem !important;
+
+    /* Appearance */
+    background: rgba(0, 0, 0, 0.95);
+    /* Slightly darker */
+    padding: 1.5rem 1rem !important;
+    width: 100% !important;
+    max-height: 50vh;
+    /* Prevent taking up too much screen */
+    overflow-y: auto;
+    /* Scroll if needed */
+
+    /* Ensure it sits on top */
+    position: fixed !important;
+  }
+
+  /* Mobile Item Text Wrapping */
+  .menu-container>span {
+    white-space: normal;
+    text-align: center;
+    font-size: 0.9rem !important;
+  }
+
+  /* Home Hero Image Mobile Override */
+  .home-hero-image {
+    background-position: left center !important;
+  }
+
+  /* More Info Button Mobile Override */
+  .more-info-button {
+    order: -1;
+    /* Move to top of flex container */
+    position: static !important;
+    margin-bottom: 1rem;
+    /* Separation below button (above Home) */
+    margin-top: 0;
+    color: #eee !important;
+    border: 1px solid #777;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    background: rgba(60, 60, 60, 0.9);
+    text-decoration: none !important;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
 }

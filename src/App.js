@@ -196,6 +196,7 @@ function App() {
     >
       {/* --- MENU overlay --- */}
       <div
+        className="menu-container"
         style={{
           position: "absolute",
           top: activeGallery === "home" ? "50%" : "1rem",
@@ -254,19 +255,8 @@ function App() {
         {/* --- More Info button --- */}
         {infoTexts[activeGallery] && (
           <span
+            className="more-info-button"
             onClick={() => setShowInfo(true)}
-            style={{
-              cursor: "pointer",
-              fontSize: "1rem",
-              color: "#ccc",
-              textDecoration: "underline",
-              position: "absolute",
-              right: "2rem",
-              top: "1.2rem",
-              transition: "color 0.3s ease",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#ccc")}
           >
             More Info
           </span>
@@ -274,29 +264,16 @@ function App() {
       </div>
 
       {/* --- CONTENT --- */}
-      <div style={{ padding: "2rem" }}>
+      <div className="app-container">
         {activeGallery === "home" ? (
           <div
+            className="home-hero-image"
             style={{
-              height: "100vh",
               backgroundImage: `url(${currentImages[0].src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center 30%",
-              borderRadius: "12px",
-              boxShadow: "0 8px 20px rgba(0,0,0,0.6)",
             }}
           />
         ) : (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "1rem",
-              marginTop: "4rem",
-              justifyItems: "center",
-              alignItems: "center",
-            }}
-          >
+          <div className="gallery-grid">
             {currentImages.map((img, idx) => (
               <motion.div
                 key={idx}
