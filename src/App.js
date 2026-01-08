@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
@@ -459,19 +460,20 @@ function App() {
             {infoTexts[activeGallery]}
           </div>
         </div>
-        </div>
+      </div>
   )
 }
 
-{/* --- Toggle Button (Mobile Only) - MOVED HERE FOR Z-INDEX --- */ }
+{/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */ }
 {
-  activeGallery !== "home" && (
+  activeGallery !== "home" && ReactDOM.createPortal(
     <div
       className="menu-toggle-btn"
       onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
     >
       {mobileMenuExpanded ? "▼" : "▲"}
-    </div>
+    </div>,
+    document.body
   )
 }
 
