@@ -12,6 +12,7 @@ function App() {
   const [index, setIndex] = useState(0);
   const [showInfo, setShowInfo] = useState(false);
   const [showHotspots, setShowHotspots] = useState(false);
+  const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false);
 
   // --- All galleries with OPTIONAL hotspots ---
   const galleries = {
@@ -208,7 +209,8 @@ function App() {
     >
       {/* --- MENU overlay --- */}
       <div
-        className="menu-container"
+        className={`menu-container ${activeGallery !== "home" && !mobileMenuExpanded ? "mobile-collapsed" : ""
+          }`}
         style={{
           position: "absolute",
           top: activeGallery === "home" ? "40%" : "1rem",
@@ -236,8 +238,19 @@ function App() {
               setActiveGallery("home");
               setOpen(false);
               setShowInfo(false);
+              setMobileMenuExpanded(false);
             }}
           />
+        )}
+
+        {/* --- Toggle Button (Mobile Only) --- */}
+        {activeGallery !== "home" && (
+          <div
+            className="menu-toggle-btn"
+            onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
+          >
+            {mobileMenuExpanded ? "▼" : "▲"}
+          </div>
         )}
 
         {menuItems.map((item) => (
@@ -254,6 +267,7 @@ function App() {
               setActiveGallery(item.key);
               setOpen(false);
               setShowInfo(false);
+              setMobileMenuExpanded(false); // Close menu after selection
             }}
             style={{
               cursor: "pointer",
