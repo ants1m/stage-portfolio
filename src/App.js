@@ -158,7 +158,6 @@ function App() {
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-129.avif", title: "Cabaret 8" },
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-47.avif", title: "Cabaret 9" },
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-51.avif", title: "Cabaret 10" },
-      { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-71 (1).avif", title: "Cabaret 11" },
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-71.avif", title: "Cabaret 12" },
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-8.avif", title: "Cabaret 13" },
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-87.avif", title: "Cabaret 14" },
