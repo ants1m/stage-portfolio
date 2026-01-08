@@ -10,10 +10,22 @@ import Masonry from "react-masonry-css";
 function App() {
   const [activeGallery, setActiveGallery] = useState("home");
   const [open, setOpen] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0); // For lightbox
+  const [currentHomeIndex, setCurrentHomeIndex] = useState(0); // For homepage slideshow
   const [showInfo, setShowInfo] = useState(false);
   const [showHotspots, setShowHotspots] = useState(false);
   const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false);
+
+  // --- Slideshow Timer (10s) ---
+  React.useEffect(() => {
+    let interval;
+    if (activeGallery === "home") {
+      interval = setInterval(() => {
+        setCurrentHomeIndex((prev) => (prev + 1) % galleries.home.length);
+      }, 10000); // 10 seconds
+    }
+    return () => clearInterval(interval);
+  }, [activeGallery]);
 
   // --- All galleries with OPTIONAL hotspots ---
   const galleries = {
@@ -21,6 +33,14 @@ function App() {
       {
         src: "/whereareyoumylovesfendonh-32.png",
         title: "Antigone 2",
+      },
+      {
+        src: "/cabaret_2-2.avif",
+        title: "Cabaret Highlight",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-102.jpg",
+        title: "Vasilikos Highlight",
       },
     ],
     o_vasilikos: [
@@ -317,14 +337,14 @@ function App() {
         <AnimatePresence mode="wait">
           {activeGallery === "home" ? (
             <motion.div
-              key="home"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              key={`home-${currentHomeIndex}`} // unique key triggers animation
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }} // Slower, smoother fade
               className="home-hero-image"
               style={{
-                backgroundImage: `url(${currentImages[0].src})`,
+                backgroundImage: `url(${galleries.home[currentHomeIndex].src})`,
               }}
             />
           ) : (
