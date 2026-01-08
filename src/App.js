@@ -199,7 +199,7 @@ function App() {
         className="menu-container"
         style={{
           position: "absolute",
-          top: activeGallery === "home" ? "50%" : "1rem",
+          top: activeGallery === "home" ? "40%" : "1rem",
           right: activeGallery === "home" ? "20rem" : "auto",
           left: activeGallery === "home" ? "auto" : "50%",
           transform:
@@ -215,6 +215,26 @@ function App() {
           width: activeGallery === "home" ? "auto" : "100%",
         }}
       >
+        {activeGallery === "home" && (
+          <img
+            src="/worldsonstage.png"
+            alt="Worlds On Stage Logo"
+            style={{
+              maxWidth: "500px", // Even Bigger
+              height: "auto",
+              marginBottom: "2rem",
+              display: "block",
+              cursor: "pointer",
+              alignSelf: "flex-end", // Align right on desktop home (since column is right-aligned)
+            }}
+            onClick={() => {
+              setActiveGallery("home");
+              setOpen(false);
+              setShowInfo(false);
+            }}
+          />
+        )}
+
         {menuItems.map((item) => (
           <span
             key={item.key}
@@ -234,6 +254,7 @@ function App() {
             {item.label}
           </span>
         ))}
+
 
         {/* --- Contact line --- */}
         <a
@@ -352,21 +373,11 @@ function App() {
                   slide.hotspots.map((spot, i) => (
                     <div
                       key={i}
+                      className="hotspot-label"
                       style={{
-                        position: "absolute",
                         left: spot.x,
                         top: spot.y,
-                        transform: "translate(-50%, -50%)",
-                        padding: "0.5rem 1rem",
-                        borderRadius: "6px",
-                        backgroundColor: "rgba(0,0,0,0.55)",
-                        color: "#fff",
-                        fontSize: "0.9rem",
-                        whiteSpace: "nowrap",
-                        border: "1px solid rgba(255,255,255,0.25)",
                         opacity: showHotspots ? 1 : 0,
-                        transition: "opacity 0.3s ease",
-                        pointerEvents: "none", // so clicks go to lightbox
                       }}
                     >
                       {spot.label}
