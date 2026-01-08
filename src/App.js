@@ -243,15 +243,7 @@ function App() {
           />
         )}
 
-        {/* --- Toggle Button (Mobile Only) --- */}
-        {activeGallery !== "home" && (
-          <div
-            className="menu-toggle-btn"
-            onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
-          >
-            {mobileMenuExpanded ? "▼" : "▲"}
-          </div>
-        )}
+
 
         {menuItems.map((item) => (
           <motion.span
@@ -467,8 +459,23 @@ function App() {
             {infoTexts[activeGallery]}
           </div>
         </div>
-      )}
+        </div>
+  )
+}
+
+{/* --- Toggle Button (Mobile Only) - MOVED HERE FOR Z-INDEX --- */ }
+{
+  activeGallery !== "home" && (
+    <div
+      className="menu-toggle-btn"
+      onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
+    >
+      {mobileMenuExpanded ? "▼" : "▲"}
     </div>
+  )
+}
+
+    </div >
   );
 }
 
