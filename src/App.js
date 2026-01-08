@@ -460,24 +460,39 @@ function App() {
             {infoTexts[activeGallery]}
           </div>
         </div>
-      </div>
-  )
-}
+      )}
 
-{/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */ }
-{
-  activeGallery !== "home" && ReactDOM.createPortal(
-    <div
-      className="menu-toggle-btn"
-      onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
-    >
-      {mobileMenuExpanded ? "▼" : "▲"}
-    </div>,
-    document.body
-  )
-}
+      {/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */}
+      {activeGallery !== "home" && ReactDOM.createPortal(
+        <div
+          onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
+          style={{
+            position: "fixed",
+            bottom: "2rem",
+            right: "1.5rem",
+            width: "3.5rem",
+            height: "3.5rem",
+            borderRadius: "50%",
+            background: "rgba(5, 5, 5, 0.85)",
+            border: "1px solid rgba(255, 255, 255, 0.3)",
+            color: "#fff",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "1.5rem",
+            zIndex: 999999, // MAX
+            cursor: "pointer",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
+          }}
+        >
+          {mobileMenuExpanded ? "▼" : "▲"}
+        </div>,
+        document.body
+      )}
 
-    </div >
+    </div>
   );
 }
 
