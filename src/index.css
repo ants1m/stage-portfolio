@@ -9,8 +9,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: "PFTransport", sans-serif;
-  background-color: #000;
-  color: #fff;
+  background-color: #050505;
+  color: #e0e0e0;
 }
 
 /* ---- TAG STYLES (add these at the bottom) ---- */
@@ -44,13 +44,26 @@ body {
 /* ---- RESPONSIVE LAYOUT ---- */
 
 /* Default (Desktop) Grid */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+/* ---- MASONRY LAYOUT ---- */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -1rem;
+  /* gutter size offset */
+  width: auto;
   margin-top: 4rem;
-  justify-items: center;
-  align-items: center;
+}
+
+.my-masonry-grid_column {
+  padding-left: 1rem;
+  /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Mobile Masonry Adjustment */
+@media (max-width: 768px) {
+  .my-masonry-grid {
+    margin-top: 1rem;
+  }
 }
 
 .app-container {
@@ -66,6 +79,17 @@ body {
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
+
+/* ---- INTERACTION STYLES ---- */
+.my-masonry-grid img {
+  filter: grayscale(20%) brightness(90%);
+  transition: filter 0.4s ease;
+}
+
+.my-masonry-grid>div:hover img {
+  filter: grayscale(0%) brightness(100%);
+}
+
 
 /* More Info Button Defaults (Desktop) */
 .more-info-button {
@@ -133,7 +157,10 @@ body {
     gap: 0.8rem !important;
 
     /* Appearance */
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     /* Slightly darker */
     padding: 1.5rem 1rem !important;
     width: 100% !important;

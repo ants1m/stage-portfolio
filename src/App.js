@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/plugins/captions.css";
+import Masonry from "react-masonry-css";
 
 function App() {
   const [activeGallery, setActiveGallery] = useState("home");
@@ -144,6 +145,15 @@ function App() {
         title: "Where Are You My Love 7",
       },
     ],
+    cabaret: [],
+    endgame: [],
+  };
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1
   };
 
   const currentImages = galleries[activeGallery] || [];
@@ -182,14 +192,16 @@ function App() {
     { key: "giagia", label: "ΓΙΑΓΙΑ, ΟΛΑ ΜΙΑ ΜΕΡΑ ΘΑ ΠΕΘΑΝΟΥΝ" },
     { key: "amphitheatriko", label: "ΑΜΦΙΘΕΑΤΡΙΚΟ" },
     { key: "whereareyoumylove", label: "WHERE ARE YOU MY LOVE" },
+    { key: "cabaret", label: "CABARET" },
+    { key: "endgame", label: "ENDGAME" },
   ];
 
   return (
     <div
       className="App"
       style={{
-        backgroundColor: "#000",
-        color: "#fff",
+        backgroundColor: "#050505",
+        color: "#e0e0e0",
         minHeight: "100vh",
         position: "relative",
       }}
@@ -236,8 +248,15 @@ function App() {
         )}
 
         {menuItems.map((item) => (
-          <span
+          <motion.span
             key={item.key}
+            whileHover={{
+              scale: 1.1,
+              color: "#fff",
+              x: 10, // Subtle shift to the right
+              textShadow: "0px 0px 8px rgba(255,255,255,0.5)"
+            }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => {
               setActiveGallery(item.key);
               setOpen(false);
@@ -246,13 +265,14 @@ function App() {
             style={{
               cursor: "pointer",
               fontSize: activeGallery === item.key ? "1.6rem" : "1rem",
-              color: activeGallery === item.key ? "red" : "#aaa",
+              color: activeGallery === item.key ? "#fff" : "#888",
               fontWeight: activeGallery === item.key ? "bold" : "normal",
-              transition: "all 0.3s ease",
+              display: "inline-block", // Required for transform
+              // Transition handled by motion
             }}
           >
             {item.label}
-          </span>
+          </motion.span>
         ))}
 
 
@@ -286,47 +306,65 @@ function App() {
 
       {/* --- CONTENT --- */}
       <div className="app-container">
-        {activeGallery === "home" ? (
-          <div
-            className="home-hero-image"
-            style={{
-              backgroundImage: `url(${currentImages[0].src})`,
-            }}
-          />
-        ) : (
-          <div className="gallery-grid">
-            {currentImages.map((img, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.05 }}
-                style={{
-                  overflow: "hidden",
-                  borderRadius: "12px",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
-                  cursor: "pointer",
-                  background: "transparent",
-                  padding: "0.5rem",
-                }}
-                onClick={() => {
-                  setIndex(idx);
-                  setOpen(true);
-                  setShowHotspots(false);
-                }}
+        <AnimatePresence mode="wait">
+          {activeGallery === "home" ? (
+            <motion.div
+              key="home"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="home-hero-image"
+              style={{
+                backgroundImage: `url(${currentImages[0].src})`,
+              }}
+            />
+          ) : (
+            <motion.div
+              key={activeGallery}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
               >
-                <img
-                  src={img.src}
-                  alt={img.title}
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "300px",
-                    objectFit: "contain",
-                    borderRadius: "6px",
-                  }}
-                />
-              </motion.div>
-            ))}
-          </div>
-        )}
+                {currentImages.map((img, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ scale: 1.02 }}
+                    style={{
+                      marginBottom: "1rem", // Space between items vertically
+                      overflow: "hidden",
+                      borderRadius: "12px",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
+                      cursor: "pointer",
+                      background: "transparent",
+                    }}
+                    onClick={() => {
+                      setIndex(idx);
+                      setOpen(true);
+                      setShowHotspots(false);
+                    }}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.title}
+                      style={{
+                        width: "100%", // critical for masonry
+                        display: "block",
+                        borderRadius: "6px",
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </Masonry>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* --- LIGHTBOX with custom slide for hotspots --- */}
@@ -399,8 +437,9 @@ function App() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.85)",
-            display: "flex",
+            backgroundColor: "rgba(5, 5, 5, 0.75)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)", display: "flex",
             justifyContent: "center",
             alignItems: "center",
             zIndex: 3000,
