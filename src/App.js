@@ -384,6 +384,7 @@ function App() {
             setShowHotspots(false);
           }}
           index={index}
+          on={{ view: ({ index: newIndex }) => setIndex(newIndex) }}
           plugins={[Captions]}
           // keep title as caption text
           slides={currentImages.map((img) => ({
