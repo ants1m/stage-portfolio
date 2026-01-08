@@ -188,7 +188,7 @@ function App() {
 
   const menuItems = [
     { key: "home", label: "Home" },
-    { key: "o_vasilikos", label: "Ο Βασιλικός" },
+    { key: "o_vasilikos", label: "Ο ΒΑΣΙΛΙΚΟΣ" },
     { key: "giagia", label: "ΓΙΑΓΙΑ, ΟΛΑ ΜΙΑ ΜΕΡΑ ΘΑ ΠΕΘΑΝΟΥΝ" },
     { key: "amphitheatriko", label: "ΑΜΦΙΘΕΑΤΡΙΚΟ" },
     { key: "whereareyoumylove", label: "WHERE ARE YOU MY LOVE" },
@@ -231,14 +231,7 @@ function App() {
           <img
             src="/worldsonstage.png"
             alt="Worlds On Stage Logo"
-            style={{
-              maxWidth: "500px", // Even Bigger
-              height: "auto",
-              marginBottom: "2rem",
-              display: "block",
-              cursor: "pointer",
-              alignSelf: "flex-end", // Align right on desktop home (since column is right-aligned)
-            }}
+            className="logo-img"
             onClick={() => {
               setActiveGallery("home");
               setOpen(false);

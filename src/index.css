@@ -205,3 +205,20 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 }
+
+/* Logo Styles */
+.logo-img {
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 2rem;
+  display: block;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    max-width: 80vw;
+    align-self: center;
+  }
+}
