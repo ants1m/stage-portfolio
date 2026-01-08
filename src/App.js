@@ -107,16 +107,7 @@ function App() {
         title: "Giagia 4",
       },
     ],
-    amphitheatriko: [
-      {
-        src: "/photo3.jpg",
-        title: "Amphitheatriko 1",
-      },
-      {
-        src: "/photo4.jpg",
-        title: "Amphitheatriko 2",
-      },
-    ],
+    amphitheatriko: [],
     whereareyoumylove: [
       {
         src: "/whereareyoumylovesfendonh-2 copy.avif",
