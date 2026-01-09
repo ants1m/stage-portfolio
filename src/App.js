@@ -324,35 +324,7 @@ function App() {
               </div>
             </div>
 
-            {/* --- 4. EXPLORE WORKS CTA (Bottom-Left) --- */}
-            <div
-              onClick={() => setMobileMenuExpanded(true)} // Opens menu to explore
-              style={{
-                position: "absolute",
-                bottom: "3rem",
-                left: "1.5rem",
-                zIndex: 2500,
-                display: "flex",
-                alignItems: "center",
-                gap: "1rem",
-                cursor: "pointer",
-              }}
-            >
-              <div style={{
-                width: "50px",
-                height: "50px",
-                borderRadius: "50%",
-                border: "1px solid rgba(255,255,255,0.3)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: "1.5rem",
-                color: "#fff"
-              }}>
-                •
-              </div>
-              <span style={{ fontSize: "0.9rem", letterSpacing: "1px", color: "#fff" }}>EXPLORE WORKS</span>
-            </div>
+            {/* --- 4. EXPLORE WORKS CTA (REMOVED) --- */}
           </>
         )}
 
