@@ -16,19 +16,10 @@ function App() {
   const [showHotspots, setShowHotspots] = useState(false);
   const [mobileMenuExpanded, setMobileMenuExpanded] = useState(false);
 
-  // --- Slideshow Timer (10s) ---
-  React.useEffect(() => {
-    let interval;
-    if (activeGallery === "home") {
-      interval = setInterval(() => {
-        setCurrentHomeIndex((prev) => (prev + 1) % galleries.home.length);
-      }, 10000); // 10 seconds
-    }
-    return () => clearInterval(interval);
-  }, [activeGallery]);
+
 
   // --- All galleries with OPTIONAL hotspots ---
-  const galleries = {
+  const galleries = React.useMemo(() => ({
     home: [
       {
         src: "/whereareyoumylovesfendonh-32.png",
@@ -177,7 +168,18 @@ function App() {
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school.avif", title: "Cabaret 17" },
     ],
     endgame: [],
-  };
+  }), []);
+
+  // --- Slideshow Timer (10s) ---
+  React.useEffect(() => {
+    let interval;
+    if (activeGallery === "home") {
+      interval = setInterval(() => {
+        setCurrentHomeIndex((prev) => (prev + 1) % galleries.home.length);
+      }, 10000); // 10 seconds
+    }
+    return () => clearInterval(interval);
+  }, [activeGallery, galleries]);
 
   const breakpointColumnsObj = {
     default: 4,
