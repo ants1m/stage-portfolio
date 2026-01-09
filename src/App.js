@@ -417,55 +417,77 @@ function App() {
       )}
 
       {/* --- MOBILE Menu overlay (Navigation List) --- */}
+      {/* --- MOBILE Menu overlay (Side Drawer) --- */}
       <div
         className={`menu-container ${!mobileMenuExpanded ? "mobile-collapsed" : ""}`}
         style={{
           position: "fixed",
+          top: 0,
           bottom: 0,
           left: 0,
-          right: 0,
-          background: "rgba(10, 10, 10, 0.95)",
-          backdropFilter: "blur(15px)",
-          borderTop: "1px solid rgba(255,255,255,0.1)",
-          padding: "2rem",
-          display: "flex", // Keep flex
+          width: "85%", // Search drawer style
+          background: "#EAE6DA", // Beige
+          padding: "3rem 2rem",
+          display: "flex",
           flexDirection: "column",
-          alignItems: "center", // Center items
-          gap: "1.5rem",
-          zIndex: 4000, // Higher than header
-          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-          maxHeight: "60vh",
-          overflowY: "auto",
+          justifyContent: "center", // Center vertically
+          alignItems: "center",
+          gap: "2rem",
+          zIndex: 4000,
+          transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)", // Smooth drawer
+          boxShadow: "5px 0 25px rgba(0,0,0,0.3)", // Shadow to right
         }}
       >
-        {/* Mobile Nav Items */}
-        {menuItems.map((item) => (
-          <span
-            key={item.key}
-            onClick={() => {
-              setActiveGallery(item.key);
-              setMobileMenuExpanded(false);
-            }}
-            style={{
-              fontSize: "1.1rem",
-              color: activeGallery === item.key ? "#fff" : "#888",
-              cursor: "pointer",
-              letterSpacing: "1px",
-              textTransform: "uppercase",
-            }}
-          >
-            {item.label}
-          </span>
-        ))}
+        {/* Navigation Links */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.8rem", alignItems: "center" }}>
+          {menuItems.map((item) => (
+            <span
+              key={item.key}
+              onClick={() => {
+                setActiveGallery(item.key);
+                setMobileMenuExpanded(false);
+              }}
+              style={{
+                fontSize: "1rem",
+                color: "#1a1a1a", // Dark text
+                cursor: "pointer",
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                fontWeight: "400",
+                fontFamily: "'Inter', sans-serif"
+              }}
+            >
+              {item.label}
+            </span>
+          ))}
+        </div>
 
-        {/* Close Button (Optional, or clicking outside closes) */}
-        <div
-          onClick={() => setMobileMenuExpanded(false)}
-          style={{ marginTop: "1rem", fontSize: "1.5rem", color: "#555", cursor: "pointer" }}
-        >
-          ✕
+        {/* Bottom Logo (Dark) */}
+        <div style={{ marginTop: "auto", marginBottom: "2rem", opacity: 0.8 }}>
+          <img
+            src="/worldsonstage.png"
+            alt="Logo"
+            style={{ width: "80px", filter: "invert(1) brightness(0.5)" }} // Make it dark
+          />
         </div>
       </div>
+
+      {/* Search Overlay Backdrop (Click to close) */}
+      {mobileMenuExpanded && (
+        <div
+          onClick={() => setMobileMenuExpanded(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0,0,0,0.5)",
+            zIndex: 3500,
+            cursor: "pointer"
+          }}
+        />
+      )}
 
       {/* --- More Info button (Fixed Position) --- */}
       {activeGallery !== "home" && infoTexts[activeGallery] && (
