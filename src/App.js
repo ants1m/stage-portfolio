@@ -259,17 +259,101 @@ function App() {
         }}
       >
         {activeGallery === "home" && (
-          <img
-            src="/worldsonstage.png"
-            alt="Worlds On Stage Logo"
-            className="logo-img"
-            onClick={() => {
-              setActiveGallery("home");
-              setOpen(false);
-              setShowInfo(false);
-              setMobileMenuExpanded(false);
-            }}
-          />
+          <>
+            {/* --- 1. Top-Left Logo (Adjusted Position) --- */}
+            <img
+              src="/worldsonstage.png"
+              alt="Worlds On Stage Logo"
+              className="logo-img"
+              style={{
+                position: "absolute",
+                top: "2rem",
+                left: "1.5rem",
+                width: "120px", // Smaller logo for mobile header feel
+                zIndex: 3000,
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setActiveGallery("home");
+                setOpen(false);
+                setShowInfo(false);
+                setMobileMenuExpanded(false);
+              }}
+            />
+
+            {/* --- 2. Hamburger Menu (MOVED TO PORTAL) --- */}
+
+            {/* --- 3. Hero Text Overlay (Mobile Style) --- */}
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "1.5rem",
+                transform: "translateY(-50%)",
+                zIndex: 2500,
+                textAlign: "left",
+                maxWidth: "80%",
+              }}
+            >
+              <div style={{
+                color: "#cbb577", // Gold/Khaki color from reference
+                fontSize: "0.8rem",
+                letterSpacing: "2px",
+                marginBottom: "1rem",
+                fontWeight: "bold"
+              }}>
+                ELENA VORE • PHOTOGRAPHY
+              </div>
+              <div style={{
+                fontSize: "3.5rem",
+                lineHeight: "1",
+                fontFamily: "'Playfair Display', serif", // Serif font
+                marginBottom: "1.5rem",
+                color: "#fff",
+              }}>
+                THEATER<br />
+                <span style={{ fontStyle: "italic", fontFamily: "'Playfair Display', serif" }}>IS ALIVE</span>
+              </div>
+              <div style={{
+                fontSize: "0.9rem",
+                color: "#ccc",
+                lineHeight: "1.4",
+                maxWidth: "300px"
+              }}>
+                Immortalizing the ephemeral. We capture the silence between the lines and the roar of the crowd.
+              </div>
+            </div>
+
+            {/* --- 4. EXPLORE WORKS CTA (Bottom-Left) --- */}
+            <div
+              onClick={() => setMobileMenuExpanded(true)} // Opens menu to explore
+              style={{
+                position: "absolute",
+                bottom: "3rem",
+                left: "1.5rem",
+                zIndex: 2500,
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                cursor: "pointer",
+              }}
+            >
+              <div style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                border: "1px solid rgba(255,255,255,0.3)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "1.5rem",
+                color: "#fff"
+              }}>
+                •
+              </div>
+              <span style={{ fontSize: "0.9rem", letterSpacing: "1px", color: "#fff" }}>EXPLORE WORKS</span>
+            </div>
+          </>
         )}
 
 
@@ -491,34 +575,49 @@ function App() {
         </div>
       )}
 
-      {/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */}
-      {activeGallery !== "home" && ReactDOM.createPortal(
+      {/* --- Hamburger Menu Button (Global - Portal) --- */}
+      {ReactDOM.createPortal(
         <div
           onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
           style={{
             position: "fixed",
-            bottom: "2rem",
+            top: "2.5rem",
             right: "1.5rem",
-            width: "3.5rem",
-            height: "3.5rem",
+            width: "3rem",
+            height: "3rem",
             borderRadius: "50%",
-            background: "rgba(5, 5, 5, 0.85)",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
-            color: "#fff",
+            background: "rgba(255, 255, 255, 0.1)", // Glassy bg
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            border: "none",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            fontSize: "1.5rem",
             zIndex: 999999, // MAX
             cursor: "pointer",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
+            padding: "8px",
           }}
         >
-          {mobileMenuExpanded ? "▼" : "▲"}
+          {/* Hamburger Lines (transform if expanded?) */}
+          <div style={{
+            width: "24px", height: "2px", background: "#fff", marginBottom: "5px",
+            transform: mobileMenuExpanded ? "rotate(45deg) translate(5px, 5px)" : "none",
+            transition: "transform 0.3s ease"
+          }}></div>
+          <div style={{
+            width: "24px", height: "2px", background: "#fff", marginBottom: "5px",
+            opacity: mobileMenuExpanded ? 0 : 1,
+            transition: "opacity 0.3s ease"
+          }}></div>
+          <div style={{
+            width: "24px", height: "2px", background: "#fff",
+            transform: mobileMenuExpanded ? "rotate(-45deg) translate(5px, -5px)" : "none",
+            transition: "transform 0.3s ease"
+          }}></div>
         </div>,
         document.body
+
       )}
 
     </div>
