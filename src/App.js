@@ -432,7 +432,7 @@ function App() {
           top: 0,
           bottom: 0,
           left: 0,
-          width: "85%", // Search drawer style
+          width: "75%", // Uncover more of the screen
           background: "#EAE6DA", // Beige
           padding: "3rem 2rem",
           display: "flex",
@@ -461,7 +461,7 @@ function App() {
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 fontWeight: "400",
-                fontFamily: "'Inter', sans-serif"
+                fontFamily: ["PFTransport", "sans-serif"], // Use custom font
               }}
             >
               {item.label}
