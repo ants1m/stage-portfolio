@@ -524,7 +524,7 @@ function App() {
         <AnimatePresence mode="wait">
           {activeGallery === "home" ? (
             <motion.div
-              key={`home-${currentHomeIndex}`} // unique key triggers animation
+              key={`home-${currentHomeIndex}-${galleries.home[currentHomeIndex].mobilePosition}`} // Force visual update
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
