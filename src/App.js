@@ -528,12 +528,13 @@ function App() {
               {/* Progress Line after active item (except last) */}
               {currentHomeIndex === idx && idx < galleries.home.length - 1 && (
                 <motion.div
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: "40px", opacity: 1 }}
+                  initial={{ width: 0 }}
+                  animate={{ width: "40px" }}
                   transition={{ duration: 10, ease: "linear" }}
                   style={{
-                    height: "1px",
+                    height: "2px",
                     background: "#fff",
+                    boxShadow: "0 0 4px rgba(0,0,0,0.5)"
                   }}
                 />
               )}
