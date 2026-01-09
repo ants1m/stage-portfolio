@@ -250,16 +250,15 @@ function App() {
         left: 0,
         right: 0,
         zIndex: 2000,
-        display: "flex",
-        justifyContent: "center",
+        display: "grid",
+        gridTemplateColumns: "1fr auto 1fr",
         alignItems: "center",
-        gap: "3rem",
         padding: "0 2rem",
         pointerEvents: "auto",
         transition: "opacity 0.3s ease",
       }}>
         {/* Left Links */}
-        <div style={{ display: "flex", gap: "2rem" }}>
+        <div style={{ display: "flex", gap: "2rem", justifyContent: "flex-end", paddingRight: "3rem" }}>
           {desktopLeftItems.map((item) => (
             <span
               key={item.key}
@@ -286,12 +285,12 @@ function App() {
         <img
           src="/worldsonstage.png"
           alt="Logo"
-          style={{ height: "40px", cursor: "pointer", opacity: 0.9 }}
+          style={{ height: "50px", cursor: "pointer", opacity: 0.9, display: "block" }}
           onClick={() => setActiveGallery("home")}
         />
 
         {/* Right Links */}
-        <div style={{ display: "flex", gap: "2rem" }}>
+        <div style={{ display: "flex", gap: "2rem", justifyContent: "flex-start", paddingLeft: "3rem" }}>
           {desktopRightItems.map((item) => (
             <span
               key={item.key}
