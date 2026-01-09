@@ -482,6 +482,36 @@ function App() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* --- Slideshow Indicators (Home Only) --- */}
+        {activeGallery === "home" && (
+          <div style={{
+            position: "fixed",
+            bottom: "3rem",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            gap: "1.5rem",
+            zIndex: 2000,
+          }}>
+            {galleries.home.map((_, idx) => (
+              <span
+                key={idx}
+                onClick={() => setCurrentHomeIndex(idx)}
+                style={{
+                  color: currentHomeIndex === idx ? "#fff" : "rgba(255,255,255,0.4)",
+                  fontSize: "0.8rem",
+                  cursor: "pointer",
+                  fontWeight: currentHomeIndex === idx ? "bold" : "normal",
+                  transition: "color 0.3s ease",
+                  fontFamily: "'Inter', sans-serif" // or inherit
+                }}
+              >
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* --- LIGHTBOX with custom slide for hotspots --- */}
