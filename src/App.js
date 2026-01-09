@@ -24,7 +24,7 @@ function App() {
       {
         src: "/whereareyoumylovesfendonh-32.png",
         title: "Antigone 2",
-        mobilePosition: "20% 20%", // Focus on face
+        mobilePosition: "10% 20%", // Focus on face
       },
       {
         src: "/cabaret_2-2.avif",
