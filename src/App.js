@@ -228,6 +228,10 @@ function App() {
     { key: "endgame", label: "ENDGAME" },
   ];
 
+  // --- Split Navigation for Desktop ---
+  const desktopLeftItems = menuItems.slice(1, 4); // Vasilikos, Giagia, Amphitheatriko
+  const desktopRightItems = menuItems.slice(4, 7); // Wayml, Cabaret, Endgame
+
   return (
     <div
       className="App"
@@ -238,7 +242,80 @@ function App() {
         position: "relative",
       }}
     >
-      {/* --- MENU overlay --- */}
+      {/* --- DESKTOP NAVIGATION (Split) --- */}
+      {/* Visible only on Desktop (media query could be better, but using JS check for now or CSS class) */}
+      <div className="desktop-nav" style={{
+        position: "absolute",
+        top: "2rem",
+        left: 0,
+        right: 0,
+        zIndex: 2000,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "3rem",
+        padding: "0 2rem",
+        pointerEvents: "auto",
+        transition: "opacity 0.3s ease",
+      }}>
+        {/* Left Links */}
+        <div style={{ display: "flex", gap: "2rem" }}>
+          {desktopLeftItems.map((item) => (
+            <span
+              key={item.key}
+              onClick={() => setActiveGallery(item.key)}
+              className="desktop-link"
+              style={{
+                cursor: "pointer",
+                fontSize: "0.85rem",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                color: "#ccc",
+                fontWeight: "500",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={(e) => e.target.style.color = "#fff"}
+              onMouseLeave={(e) => e.target.style.color = "#ccc"}
+            >
+              {item.label}
+            </span>
+          ))}
+        </div>
+
+        {/* Center Logo */}
+        <img
+          src="/worldsonstage.png"
+          alt="Logo"
+          style={{ height: "40px", cursor: "pointer", opacity: 0.9 }}
+          onClick={() => setActiveGallery("home")}
+        />
+
+        {/* Right Links */}
+        <div style={{ display: "flex", gap: "2rem" }}>
+          {desktopRightItems.map((item) => (
+            <span
+              key={item.key}
+              onClick={() => setActiveGallery(item.key)}
+              className="desktop-link"
+              style={{
+                cursor: "pointer",
+                fontSize: "0.85rem",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                color: "#ccc",
+                fontWeight: "500",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={(e) => e.target.style.color = "#fff"}
+              onMouseLeave={(e) => e.target.style.color = "#ccc"}
+            >
+              {item.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* --- MOBILE Menu overlay (Keep existing logic) --- */}
       <div
         className={`menu-container ${activeGallery !== "home" && !mobileMenuExpanded ? "mobile-collapsed" : ""
           }`}
@@ -514,6 +591,7 @@ function App() {
       {/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */}
       {activeGallery !== "home" && ReactDOM.createPortal(
         <div
+          className="menu-toggle-btn"
           onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
           style={{
             position: "fixed",

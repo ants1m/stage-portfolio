@@ -265,4 +265,14 @@ body {
     max-width: 80vw;
     align-self: center;
   }
+
+  .desktop-nav {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-container {
+    display: none !important;
+  }
 }
