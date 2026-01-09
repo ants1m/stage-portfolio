@@ -47,9 +47,9 @@ function App() {
         mobilePos: "50% 50%",
       },
       {
-        src: "/whereareyoumylovesfendonh-25 copy.avif",
+        src: "/whereareyoumylovesfendonh-25_v2.webp",
         title: "Where Are You My Love Duo",
-        mobilePos: "40% 20%",
+        mobilePos: "50% 30%",
       },
       {
         src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-47.avif",
