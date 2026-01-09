@@ -33,6 +33,22 @@ function App() {
         src: "/o_vasiikos_theatro_simeio-102.jpg",
         title: "Vasilikos Highlight",
       },
+      {
+        src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-8.avif",
+        title: "Cabaret Atmosphere",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-18.jpg",
+        title: "Vasilikos Scene",
+      },
+      {
+        src: "/whereareyoumylovesfendonh-2 copy.avif",
+        title: "Where Are You My Love Duo",
+      },
+      {
+        src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-47.avif",
+        title: "Cabaret Focus",
+      },
     ],
     o_vasilikos: [
       {
