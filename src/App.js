@@ -47,7 +47,7 @@ function App() {
         mobilePos: "50% 50%",
       },
       {
-        src: "/whereareyoumylovesfendonh-2 copy.avif",
+        src: "/whereareyoumylovesfendonh-25 copy.avif",
         title: "Where Are You My Love Duo",
         mobilePos: "40% 20%",
       },
