@@ -24,37 +24,30 @@ function App() {
       {
         src: "/whereareyoumylovesfendonh-32.png",
         title: "Antigone 2",
-        mobilePosition: "10% 20%", // Focus on face
       },
       {
         src: "/cabaret_2-2.avif",
         title: "Cabaret Highlight",
-        mobilePosition: "60% 30%",
       },
       {
         src: "/o_vasiikos_theatro_simeio-102.jpg",
         title: "Vasilikos Highlight",
-        mobilePosition: "50% 20%",
       },
       {
         src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-8.avif",
         title: "Cabaret Atmosphere",
-        mobilePosition: "80% 20%",
       },
       {
         src: "/o_vasiikos_theatro_simeio-18.jpg",
         title: "Vasilikos Scene",
-        mobilePosition: "center center",
       },
       {
         src: "/whereareyoumylovesfendonh-2 copy.avif",
         title: "Where Are You My Love Duo",
-        mobilePosition: "40% 40%",
       },
       {
         src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-47.avif",
         title: "Cabaret Focus",
-        mobilePosition: "center 20%",
       },
     ],
     o_vasilikos: [
@@ -424,78 +417,75 @@ function App() {
       )}
 
       {/* --- MOBILE Menu overlay (Navigation List) --- */}
-      {/* --- MOBILE Menu overlay (Side Drawer) --- */}
+      {/* --- Mobile Menu Backdrop --- */}
       <div
-        className={`menu-container ${!mobileMenuExpanded ? "mobile-collapsed" : ""}`}
+        onClick={() => setMobileMenuExpanded(false)}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "rgba(0,0,0,0.6)",
+          backdropFilter: "blur(5px)",
+          WebkitBackdropFilter: "blur(5px)",
+          zIndex: 3999,
+          opacity: mobileMenuExpanded ? 1 : 0,
+          pointerEvents: mobileMenuExpanded ? "auto" : "none",
+          transition: "opacity 0.4s ease",
+        }}
+      />
+
+      {/* --- MOBILE Menu Side Drawer --- */}
+      <div
         style={{
           position: "fixed",
           top: 0,
           bottom: 0,
           left: 0,
-          width: "75%", // Uncover more of the screen
-          background: "#EAE6DA", // Beige
-          padding: "3rem 2rem",
+          width: "85%",
+          maxWidth: "400px",
+          background: "#0c0c0c",
+          borderRight: "1px solid rgba(255,255,255,0.05)",
+          padding: "2rem",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center", // Center vertically
           alignItems: "center",
+          justifyContent: "center",
           gap: "2rem",
           zIndex: 4000,
-          transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)", // Smooth drawer
-          boxShadow: "5px 0 25px rgba(0,0,0,0.3)", // Shadow to right
+          transform: mobileMenuExpanded ? "translateX(0)" : "translateX(-100%)",
+          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+          boxShadow: "10px 0 30px rgba(0,0,0,0.5)",
         }}
       >
-        {/* Navigation Links */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", alignItems: "center" }}>
-          {menuItems.map((item) => (
-            <span
-              key={item.key}
-              onClick={() => {
-                setActiveGallery(item.key);
-                setMobileMenuExpanded(false);
-              }}
-              style={{
-                fontSize: "0.95rem",
-                color: "#1a1a1a", // Dark text
-                cursor: "pointer",
-                letterSpacing: "3px", // Wider spacing
-                textTransform: "uppercase",
-                fontWeight: "500",
-                fontFamily: ["PFTransport", "sans-serif"], // Use custom font
-              }}
-            >
-              {item.label}
-            </span>
-          ))}
-        </div>
+        {/* Mobile Nav Items */}
+        {menuItems.map((item) => (
+          <span
+            key={item.key}
+            onClick={() => {
+              setActiveGallery(item.key);
+              setMobileMenuExpanded(false);
+            }}
+            style={{
+              fontSize: "1.2rem",
+              color: activeGallery === item.key ? "#fff" : "#888",
+              cursor: "pointer",
+              letterSpacing: "1.5px",
+              textTransform: "uppercase",
+              fontWeight: activeGallery === item.key ? "600" : "400",
+              transition: "color 0.2s ease"
+            }}
+          >
+            {item.label}
+          </span>
+        ))}
 
-        {/* Bottom Logo (Dark) */}
-        <div style={{ marginTop: "auto", marginBottom: "2rem", opacity: 0.8 }}>
-          <img
-            src="/worldsonstage.png"
-            alt="Logo"
-            style={{ width: "80px", filter: "invert(1) brightness(0.5)" }} // Make it dark
-          />
+        {/* Bottom branding or simple close hint */}
+        <div style={{ marginTop: "3rem", opacity: 0.3 }}>
+          <img src="/worldsonstage.png" alt="Logo" style={{ width: "80px" }} />
         </div>
       </div>
-
-      {/* Search Overlay Backdrop (Click to close) */}
-      {mobileMenuExpanded && (
-        <div
-          onClick={() => setMobileMenuExpanded(false)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-
-            background: "transparent", // Show the photo clearly
-            zIndex: 3500,
-            cursor: "pointer"
-          }}
-        />
-      )}
 
       {/* --- More Info button (Fixed Position) --- */}
       {activeGallery !== "home" && infoTexts[activeGallery] && (
@@ -525,7 +515,7 @@ function App() {
         <AnimatePresence mode="wait">
           {activeGallery === "home" ? (
             <motion.div
-              key={`home-${currentHomeIndex}-${galleries.home[currentHomeIndex].mobilePosition}`} // Force visual update
+              key={`home-${currentHomeIndex}`} // unique key triggers animation
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -533,7 +523,6 @@ function App() {
               className="home-hero-image"
               style={{
                 backgroundImage: `url(${galleries.home[currentHomeIndex].src})`,
-                "--mobile-pos": galleries.home[currentHomeIndex].mobilePosition || "center",
               }}
             />
           ) : (
