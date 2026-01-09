@@ -444,7 +444,7 @@ function App() {
           top: 0,
           bottom: 0,
           left: 0,
-          width: "85%", // Leave gap
+          width: "75%", // Wider gap to show blurred content
           maxWidth: "400px",
           background: "#F2F0E9", // Beige creamy color
           padding: "2rem",
@@ -468,13 +468,13 @@ function App() {
               setMobileMenuExpanded(false);
             }}
             style={{
-              fontSize: "1rem", // Smaller, elegant
+              fontSize: "1.1rem", // Smaller, elegant
               color: "#222",
               cursor: "pointer",
-              letterSpacing: "3px", // Wide spacing
+              letterSpacing: "2px", // Wide spacing
               textTransform: "uppercase",
-              fontFamily: "'Times New Roman', serif", // Serif look
-              fontWeight: activeGallery === item.key ? "600" : "400",
+              fontFamily: "'PFTransport', sans-serif", // Serif look
+              fontWeight: activeGallery === item.key ? "600" : "500",
               borderBottom: activeGallery === item.key ? "1px solid #222" : "none",
               paddingBottom: "4px",
               transition: "all 0.3s ease",
