@@ -275,4 +275,8 @@ body {
   .menu-container {
     display: none !important;
   }
+
+  .mobile-header-home {
+    display: none !important;
+  }
 }

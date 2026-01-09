@@ -358,17 +358,19 @@ function App() {
 
       {/* --- Mobile Header (Home Only) --- */}
       {activeGallery === "home" && (
-        <div style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: "2rem 1.75rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          zIndex: 3000,
-        }}>
+        <div
+          className="mobile-header-home"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            padding: "2rem 1.75rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            zIndex: 3000,
+          }}>
           {/* MENU Text - Triggers Menu */}
           <span
             onClick={() => setMobileMenuExpanded(true)}
