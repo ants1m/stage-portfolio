@@ -198,7 +198,7 @@ body {
 
   /* Home Hero Image Mobile Override */
   .home-hero-image {
-    background-position: left center !important;
+    background-position: var(--mobile-pos, center) !important;
   }
 
   /* More Info Button Mobile Override */

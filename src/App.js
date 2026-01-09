@@ -24,30 +24,37 @@ function App() {
       {
         src: "/whereareyoumylovesfendonh-32.png",
         title: "Antigone 2",
+        mobilePosition: "60% 30%", // Focus on face
       },
       {
         src: "/cabaret_2-2.avif",
         title: "Cabaret Highlight",
+        mobilePosition: "center top",
       },
       {
         src: "/o_vasiikos_theatro_simeio-102.jpg",
         title: "Vasilikos Highlight",
+        mobilePosition: "50% 20%",
       },
       {
         src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-8.avif",
         title: "Cabaret Atmosphere",
+        mobilePosition: "center 30%",
       },
       {
         src: "/o_vasiikos_theatro_simeio-18.jpg",
         title: "Vasilikos Scene",
+        mobilePosition: "center center",
       },
       {
         src: "/whereareyoumylovesfendonh-2 copy.avif",
         title: "Where Are You My Love Duo",
+        mobilePosition: "40% 40%",
       },
       {
         src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-47.avif",
         title: "Cabaret Focus",
+        mobilePosition: "center 20%",
       },
     ],
     o_vasilikos: [
@@ -525,6 +532,7 @@ function App() {
               className="home-hero-image"
               style={{
                 backgroundImage: `url(${galleries.home[currentHomeIndex].src})`,
+                "--mobile-pos": galleries.home[currentHomeIndex].mobilePosition || "center",
               }}
             />
           ) : (
