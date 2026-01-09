@@ -216,6 +216,10 @@ function App() {
 
 Παίζουν: Νικόλας Αγαπίου, Σαβίνα Αλεβιζάκη, Άννα Βλάχου, Μαρία Θανασάκη, Ιωσήφ Καμπουράκης, Ευανθία Κιάκο, Αλέξανδρος Κώτης, Αναστασία Λεωνίδου, Βικτωρία Λυδατάκη, Μαριάννα Ζωή Μαριγώνη, Κωνσταντίνα Μέσσιου, Όλγα Μιχαλοπούλου, Μικαέλα Μπραούνου, Αντιγόνη Παπαποστόλου, Τάσος Πετρίτσης, Ράνια Πολυχρονάκη, Παναγιώτης Ρενιέρης, Δήμητρα Ρίζου, Ναϊάδα Σαγρή, Αγγελική Σιτρά, Κατερίνα Τοκμακτσή
     `,
+    giagia: "More info coming soon...",
+    amphitheatriko: "More info coming soon...",
+    cabaret: "More info coming soon...",
+    endgame: "More info coming soon...",
   };
 
   const menuItems = [
@@ -392,225 +396,226 @@ function App() {
 
 
 
-        {/* --- More Info button (Moved out of legacy container) --- */}
-        {/* --- More Info button (Moved out of legacy container) --- */}
-        {activeGallery !== "home" && infoTexts[activeGallery] && (
-          <span
-            className="more-info-button"
-            onClick={() => setShowInfo(true)}
-            style={{
-              position: "fixed", // Force fixed to ensure visibility
-              top: "6rem",
-              right: "2rem",
-              zIndex: 2500, // Ensure it's above content but below overlays
-              cursor: "pointer",
-              color: "#ccc",
-              border: "1px solid #777",
-              padding: "0.6rem 1.2rem",
-              borderRadius: "6px",
-              background: "rgba(0,0,0,0.5)"
-            }}
-          >
-            More Info
-          </span>
-        )}
       </div>
 
-      {/* --- CONTENT --- */}
-      <div className="app-container">
-        <AnimatePresence mode="wait">
-          {activeGallery === "home" ? (
-            <motion.div
-              key={`home-${currentHomeIndex}`} // unique key triggers animation
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }} // Slower, smoother fade
-              className="home-hero-image"
-              style={{
-                backgroundImage: `url(${galleries.home[currentHomeIndex].src})`,
-              }}
-            />
-          ) : (
-            <motion.div
-              key={activeGallery}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            >
-              <Masonry
-                breakpointCols={breakpointColumnsObj}
-                className="my-masonry-grid"
-                columnClassName="my-masonry-grid_column"
+      {/* --- More Info button (Fixed Position) --- */}
+      {activeGallery !== "home" && infoTexts[activeGallery] && (
+        <span
+          className="more-info-button"
+          onClick={() => setShowInfo(true)}
+          style={{
+            position: "fixed",
+            top: "6rem",
+            right: "2rem",
+            zIndex: 2500,
+            cursor: "pointer",
+            color: "#ccc",
+            border: "1px solid #777",
+            padding: "0.6rem 1.2rem",
+            borderRadius: "6px",
+            background: "rgba(0,0,0,0.5)"
+          }}
+        >
+          More Info
+        </span>
+      )}
+    </div>
+
+      {/* --- CONTENT --- */ }
+  <div className="app-container">
+    <AnimatePresence mode="wait">
+      {activeGallery === "home" ? (
+        <motion.div
+          key={`home-${currentHomeIndex}`} // unique key triggers animation
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }} // Slower, smoother fade
+          className="home-hero-image"
+          style={{
+            backgroundImage: `url(${galleries.home[currentHomeIndex].src})`,
+          }}
+        />
+      ) : (
+        <motion.div
+          key={activeGallery}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {currentImages.map((img, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.02 }}
+                style={{
+                  marginBottom: "1rem", // Space between items vertically
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
+                  cursor: "pointer",
+                  background: "transparent",
+                }}
+                onClick={() => {
+                  setIndex(idx);
+                  setOpen(true);
+                  setShowHotspots(false);
+                }}
               >
-                {currentImages.map((img, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{ scale: 1.02 }}
-                    style={{
-                      marginBottom: "1rem", // Space between items vertically
-                      overflow: "hidden",
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.5)",
-                      cursor: "pointer",
-                      background: "transparent",
-                    }}
-                    onClick={() => {
-                      setIndex(idx);
-                      setOpen(true);
-                      setShowHotspots(false);
-                    }}
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.title}
-                      style={{
-                        width: "100%", // critical for masonry
-                        display: "block",
-                        borderRadius: "6px",
-                      }}
-                    />
-                  </motion.div>
-                ))}
-              </Masonry>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* --- LIGHTBOX with custom slide for hotspots --- */}
-      {
-        activeGallery !== "home" && (
-          <Lightbox
-            open={open}
-            close={() => {
-              setOpen(false);
-              setShowHotspots(false);
-            }}
-            index={index}
-            on={{ view: ({ index: newIndex }) => setIndex(newIndex) }}
-            plugins={[Captions]}
-            // keep title as caption text
-            slides={currentImages.map((img) => ({
-              ...img,
-              description: img.title,
-            }))}
-            render={{
-              slide: ({ slide }) => (
-                <div
+                <img
+                  src={img.src}
+                  alt={img.title}
                   style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    width: "100%", // critical for masonry
+                    display: "block",
+                    borderRadius: "6px",
                   }}
-                  onMouseEnter={() => setShowHotspots(true)}
-                  onMouseLeave={() => setShowHotspots(false)}
-                >
-                  <img
-                    src={slide.src}
-                    alt={slide.title}
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      objectFit: "contain",
-                      display: "block",
-                    }}
-                  />
+                />
+              </motion.div>
+            ))}
+          </Masonry>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
 
-                  {slide.hotspots &&
-                    slide.hotspots.map((spot, i) => (
-                      <div
-                        key={i}
-                        className="hotspot-label"
-                        style={{
-                          left: spot.x,
-                          top: spot.y,
-                          opacity: showHotspots ? 1 : 0,
-                        }}
-                      >
-                        {spot.label}
-                      </div>
-                    ))}
-                </div>
-              ),
-            }}
-          />
-        )
-      }
-
-      {/* --- INFO OVERLAY --- */}
-      {
-        showInfo && (
-          <div
-            onClick={() => setShowInfo(false)}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(5, 5, 5, 0.75)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)", display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 3000,
-              transition: "opacity 0.4s ease",
-            }}
-          >
+  {/* --- LIGHTBOX with custom slide for hotspots --- */ }
+  {
+    activeGallery !== "home" && (
+      <Lightbox
+        open={open}
+        close={() => {
+          setOpen(false);
+          setShowHotspots(false);
+        }}
+        index={index}
+        on={{ view: ({ index: newIndex }) => setIndex(newIndex) }}
+        plugins={[Captions]}
+        // keep title as caption text
+        slides={currentImages.map((img) => ({
+          ...img,
+          description: img.title,
+        }))}
+        render={{
+          slide: ({ slide }) => (
             <div
               style={{
-                maxWidth: "600px",
-                padding: "2rem",
-                color: "#fff",
-                textAlign: "center",
-                whiteSpace: "pre-line",
-                lineHeight: "1.6",
-                fontSize: "1.1rem",
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
+              onMouseEnter={() => setShowHotspots(true)}
+              onMouseLeave={() => setShowHotspots(false)}
             >
-              {infoTexts[activeGallery]}
-            </div>
-          </div>
-        )
-      }
+              <img
+                src={slide.src}
+                alt={slide.title}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  objectFit: "contain",
+                  display: "block",
+                }}
+              />
 
-      {/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */}
-      {
-        activeGallery !== "home" && ReactDOM.createPortal(
-          <div
-            className="menu-toggle-btn"
-            onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
-            style={{
-              position: "fixed",
-              bottom: "2rem",
-              right: "1.5rem",
-              width: "3.5rem",
-              height: "3.5rem",
-              borderRadius: "50%",
-              background: "rgba(5, 5, 5, 0.85)",
-              border: "1px solid rgba(255, 255, 255, 0.3)",
-              color: "#fff",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "1.5rem",
-              zIndex: 999999, // MAX
-              cursor: "pointer",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-              boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
-            }}
-          >
-            {mobileMenuExpanded ? "▼" : "▲"}
-          </div>,
-          document.body
-        )
-      }
+              {slide.hotspots &&
+                slide.hotspots.map((spot, i) => (
+                  <div
+                    key={i}
+                    className="hotspot-label"
+                    style={{
+                      left: spot.x,
+                      top: spot.y,
+                      opacity: showHotspots ? 1 : 0,
+                    }}
+                  >
+                    {spot.label}
+                  </div>
+                ))}
+            </div>
+          ),
+        }}
+      />
+    )
+  }
+
+  {/* --- INFO OVERLAY --- */ }
+  {
+    showInfo && (
+      <div
+        onClick={() => setShowInfo(false)}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(5, 5, 5, 0.75)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)", display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 3000,
+          transition: "opacity 0.4s ease",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "600px",
+            padding: "2rem",
+            color: "#fff",
+            textAlign: "center",
+            whiteSpace: "pre-line",
+            lineHeight: "1.6",
+            fontSize: "1.1rem",
+          }}
+        >
+          {infoTexts[activeGallery]}
+        </div>
+      </div>
+    )
+  }
+
+  {/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */ }
+  {
+    activeGallery !== "home" && ReactDOM.createPortal(
+      <div
+        className="menu-toggle-btn"
+        onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
+        style={{
+          position: "fixed",
+          bottom: "2rem",
+          right: "1.5rem",
+          width: "3.5rem",
+          height: "3.5rem",
+          borderRadius: "50%",
+          background: "rgba(5, 5, 5, 0.85)",
+          border: "1px solid rgba(255, 255, 255, 0.3)",
+          color: "#fff",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "1.5rem",
+          zIndex: 999999, // MAX
+          cursor: "pointer",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
+        }}
+      >
+        {mobileMenuExpanded ? "▼" : "▲"}
+      </div>,
+      document.body
+    )
+  }
 
     </div >
   );
