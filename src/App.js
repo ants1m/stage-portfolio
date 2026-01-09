@@ -356,62 +356,113 @@ function App() {
       </div>
 
 
-      {/* --- MOBILE Menu overlay (Keep existing logic) --- */}
-      <div
-        className={`menu-container ${activeGallery !== "home" && !mobileMenuExpanded ? "mobile-collapsed" : ""
-          }`}
-        style={{
-          position: "absolute",
-          top: activeGallery === "home" ? "40%" : "1rem",
-          right: activeGallery === "home" ? "20rem" : "auto",
-          left: activeGallery === "home" ? "auto" : "50%",
-          transform:
-            activeGallery === "home"
-              ? "translateY(-50%)"
-              : "translateX(-50%)",
+      {/* --- Mobile Header (Home Only) --- */}
+      {activeGallery === "home" && (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          padding: "2rem 1.75rem",
           display: "flex",
-          flexDirection: activeGallery === "home" ? "column" : "row",
-          gap: activeGallery === "home" ? "1.2rem" : "2rem",
-          textAlign: activeGallery === "home" ? "right" : "center",
-          justifyContent: activeGallery === "home" ? "flex-end" : "center",
-          zIndex: 2000,
-          width: activeGallery === "home" ? "auto" : "100%",
+          justifyContent: "space-between",
+          alignItems: "center",
+          zIndex: 3000,
+        }}>
+          {/* MENU Text - Triggers Menu */}
+          <span
+            onClick={() => setMobileMenuExpanded(true)}
+            style={{
+              fontSize: "0.85rem",
+              letterSpacing: "1.5px",
+              fontWeight: "500",
+              color: "#e0e0e0",
+              cursor: "pointer",
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            MENU
+          </span>
+
+          {/* Logo Center */}
+          <img
+            src="/worldsonstage.png"
+            alt="Logo"
+            onClick={() => window.location.reload()}
+            style={{
+              height: "45px",
+              cursor: "pointer",
+              opacity: 0.9,
+            }}
+          />
+
+          {/* Contact Right */}
+          <a
+            href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
+            style={{
+              fontSize: "0.85rem",
+              letterSpacing: "1.5px",
+              fontWeight: "500",
+              color: "#e0e0e0",
+              cursor: "pointer",
+              textDecoration: "none",
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            CONTACT
+          </a>
+        </div>
+      )}
+
+      {/* --- MOBILE Menu overlay (Navigation List) --- */}
+      <div
+        className={`menu-container ${!mobileMenuExpanded ? "mobile-collapsed" : ""}`}
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: "rgba(10, 10, 10, 0.95)",
+          backdropFilter: "blur(15px)",
+          borderTop: "1px solid rgba(255,255,255,0.1)",
+          padding: "2rem",
+          display: "flex", // Keep flex
+          flexDirection: "column",
+          alignItems: "center", // Center items
+          gap: "1.5rem",
+          zIndex: 4000, // Higher than header
+          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+          maxHeight: "60vh",
+          overflowY: "auto",
         }}
       >
-        {activeGallery === "home" && (
-          <>
-            {/* --- 1. Top-Left Logo (Adjusted Position) --- */}
-            <img
-              src="/worldsonstage.png"
-              alt="Worlds On Stage Logo"
-              className="logo-img"
-              style={{
-                position: "absolute",
-                top: "2rem",
-                left: "1.5rem",
-                width: "120px", // Smaller logo for mobile header feel
-                zIndex: 3000,
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                setActiveGallery("home");
-                setOpen(false);
-                setShowInfo(false);
-                setMobileMenuExpanded(false);
-              }}
-            />
+        {/* Mobile Nav Items */}
+        {menuItems.map((item) => (
+          <span
+            key={item.key}
+            onClick={() => {
+              setActiveGallery(item.key);
+              setMobileMenuExpanded(false);
+            }}
+            style={{
+              fontSize: "1.1rem",
+              color: activeGallery === item.key ? "#fff" : "#888",
+              cursor: "pointer",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+            }}
+          >
+            {item.label}
+          </span>
+        ))}
 
-            {/* --- 2. Hamburger Menu (MOVED TO PORTAL) --- */}
-
-            {/* --- 3. Hero Text Overlay (Mobile Style) --- */}
-            {/* --- 3. Hero Text Overlay (REMOVED) --- */}
-
-            {/* --- 4. EXPLORE WORKS CTA (REMOVED) --- */}
-          </>
-        )}
-
-
-
+        {/* Close Button (Optional, or clicking outside closes) */}
+        <div
+          onClick={() => setMobileMenuExpanded(false)}
+          style={{ marginTop: "1rem", fontSize: "1.5rem", color: "#555", cursor: "pointer" }}
+        >
+          ✕
+        </div>
       </div>
 
       {/* --- More Info button (Fixed Position) --- */}
