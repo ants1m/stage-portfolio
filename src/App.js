@@ -24,12 +24,12 @@ function App() {
       {
         src: "/whereareyoumylovesfendonh-32.png",
         title: "Antigone 2",
-        mobilePosition: "60% 30%", // Focus on face
+        mobilePosition: "20% 20%", // Focus on face
       },
       {
         src: "/cabaret_2-2.avif",
         title: "Cabaret Highlight",
-        mobilePosition: "center top",
+        mobilePosition: "60% 30%",
       },
       {
         src: "/o_vasiikos_theatro_simeio-102.jpg",
@@ -39,7 +39,7 @@ function App() {
       {
         src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-8.avif",
         title: "Cabaret Atmosphere",
-        mobilePosition: "center 30%",
+        mobilePosition: "center 50%",
       },
       {
         src: "/o_vasiikos_theatro_simeio-18.jpg",

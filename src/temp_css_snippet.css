@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle-btn {
+        display: none !important;
+        /* Hide mobile toggles on desktop */
+    }
+
+    .menu-container {
+        /* Ensure legacy menu container doesn't interfere */
+        display: none !important;
+    }
+}
