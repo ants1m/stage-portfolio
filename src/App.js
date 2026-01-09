@@ -39,7 +39,7 @@ function App() {
       {
         src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-8.avif",
         title: "Cabaret Atmosphere",
-        mobilePosition: "center 50%",
+        mobilePosition: "80% 20%",
       },
       {
         src: "/o_vasiikos_theatro_simeio-18.jpg",
