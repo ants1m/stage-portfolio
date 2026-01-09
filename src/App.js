@@ -524,7 +524,7 @@ function App() {
             </React.Fragment>
           ))}
         </div>
-        )}
+        }
       </div>
 
       {/* --- LIGHTBOX with custom slide for hotspots --- */}
