@@ -489,7 +489,7 @@ function App() {
             left: 0,
             right: 0,
             bottom: 0,
-            bottom: 0,
+
             background: "transparent", // Show the photo clearly
             zIndex: 3500,
             cursor: "pointer"
