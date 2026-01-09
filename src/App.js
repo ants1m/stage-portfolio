@@ -446,7 +446,7 @@ function App() {
         }}
       >
         {/* Navigation Links */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.8rem", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", alignItems: "center" }}>
           {menuItems.map((item) => (
             <span
               key={item.key}
@@ -455,12 +455,12 @@ function App() {
                 setMobileMenuExpanded(false);
               }}
               style={{
-                fontSize: "1rem",
+                fontSize: "0.95rem",
                 color: "#1a1a1a", // Dark text
                 cursor: "pointer",
-                letterSpacing: "2px",
+                letterSpacing: "3px", // Wider spacing
                 textTransform: "uppercase",
-                fontWeight: "400",
+                fontWeight: "500",
                 fontFamily: ["PFTransport", "sans-serif"], // Use custom font
               }}
             >
@@ -489,7 +489,8 @@ function App() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(0,0,0,0.5)",
+            bottom: 0,
+            background: "transparent", // Show the photo clearly
             zIndex: 3500,
             cursor: "pointer"
           }}
