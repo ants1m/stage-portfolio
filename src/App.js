@@ -284,45 +284,7 @@ function App() {
             {/* --- 2. Hamburger Menu (MOVED TO PORTAL) --- */}
 
             {/* --- 3. Hero Text Overlay (Mobile Style) --- */}
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "1.5rem",
-                transform: "translateY(-50%)",
-                zIndex: 2500,
-                textAlign: "left",
-                maxWidth: "80%",
-              }}
-            >
-              <div style={{
-                color: "#cbb577", // Gold/Khaki color from reference
-                fontSize: "0.8rem",
-                letterSpacing: "2px",
-                marginBottom: "1rem",
-                fontWeight: "bold"
-              }}>
-                ELENA VORE • PHOTOGRAPHY
-              </div>
-              <div style={{
-                fontSize: "3.5rem",
-                lineHeight: "1",
-                fontFamily: "'Playfair Display', serif", // Serif font
-                marginBottom: "1.5rem",
-                color: "#fff",
-              }}>
-                THEATER<br />
-                <span style={{ fontStyle: "italic", fontFamily: "'Playfair Display', serif" }}>IS ALIVE</span>
-              </div>
-              <div style={{
-                fontSize: "0.9rem",
-                color: "#ccc",
-                lineHeight: "1.4",
-                maxWidth: "300px"
-              }}>
-                Immortalizing the ephemeral. We capture the silence between the lines and the roar of the crowd.
-              </div>
-            </div>
+            {/* --- 3. Hero Text Overlay (REMOVED) --- */}
 
             {/* --- 4. EXPLORE WORKS CTA (REMOVED) --- */}
           </>
