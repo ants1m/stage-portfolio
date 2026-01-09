@@ -144,38 +144,11 @@ body {
     /* Space for bottom fixed menu */
   }
 
-  /* Mobile Menu Overrides */
-  .menu-container {
-    /* Reset positioning to be bottom-fixed or consistent */
-    top: auto !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    transform: none !important;
+  /* Mobile Menu Overrides - REMOVED to allow App.js inline control */
 
-    /* Layout */
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 0.8rem !important;
-
-    /* Appearance */
-    background: rgba(5, 5, 5, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.5rem 1rem !important;
-    width: 100% !important;
-    max-height: 50vh;
-    overflow-y: auto;
-
-    /* Ensure it sits on top */
-    position: fixed !important;
-    z-index: 2999 !important;
-
-    /* Transition for slide up/down */
-    transition: transform 0.4s ease-in-out !important;
+  /* Collapsed state (hidden at bottom) */
+  .mobile-collapsed {
+    transform: translateY(100%) !important;
   }
 
   /* Collapsed state (hidden at bottom) */
