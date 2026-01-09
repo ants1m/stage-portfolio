@@ -511,49 +511,34 @@ function App() {
         </div>
       )}
 
-      {/* --- Hamburger Menu Button (Global - Portal) --- */}
-      {ReactDOM.createPortal(
+      {/* --- Toggle Button (Mobile Only) - PORTAL for Z-INDEX --- */}
+      {activeGallery !== "home" && ReactDOM.createPortal(
         <div
           onClick={() => setMobileMenuExpanded(!mobileMenuExpanded)}
           style={{
             position: "fixed",
-            top: "2.5rem",
+            bottom: "2rem",
             right: "1.5rem",
-            width: "3rem",
-            height: "3rem",
+            width: "3.5rem",
+            height: "3.5rem",
             borderRadius: "50%",
-            background: "rgba(255, 255, 255, 0.1)", // Glassy bg
-            backdropFilter: "blur(4px)",
-            WebkitBackdropFilter: "blur(4px)",
-            border: "none",
+            background: "rgba(5, 5, 5, 0.85)",
+            border: "1px solid rgba(255, 255, 255, 0.3)",
+            color: "#fff",
             display: "flex",
-            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            fontSize: "1.5rem",
             zIndex: 999999, // MAX
             cursor: "pointer",
-            padding: "8px",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
           }}
         >
-          {/* Hamburger Lines (transform if expanded?) */}
-          <div style={{
-            width: "24px", height: "2px", background: "#fff", marginBottom: "5px",
-            transform: mobileMenuExpanded ? "rotate(45deg) translate(5px, 5px)" : "none",
-            transition: "transform 0.3s ease"
-          }}></div>
-          <div style={{
-            width: "24px", height: "2px", background: "#fff", marginBottom: "5px",
-            opacity: mobileMenuExpanded ? 0 : 1,
-            transition: "opacity 0.3s ease"
-          }}></div>
-          <div style={{
-            width: "24px", height: "2px", background: "#fff",
-            transform: mobileMenuExpanded ? "rotate(-45deg) translate(5px, -5px)" : "none",
-            transition: "transform 0.3s ease"
-          }}></div>
+          {mobileMenuExpanded ? "▼" : "▲"}
         </div>,
         document.body
-
       )}
 
     </div>
