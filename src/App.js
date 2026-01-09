@@ -144,10 +144,6 @@ function App() {
     amphitheatriko: [],
     whereareyoumylove: [
       {
-        src: "/whereareyoumylovesfendonh-2 copy.avif",
-        title: "Where Are You My Love 1",
-      },
-      {
         src: "/whereareyoumylovesfendonh-9 (2) copy.avif",
         title: "Where Are You My Love 2",
       },
@@ -160,8 +156,8 @@ function App() {
         title: "Where Are You My Love 4",
       },
       {
-        src: "/whereareyoumylovesfendonh-25 copy.avif",
-        title: "Where Are You My Love 5",
+        src: "/whereareyoumylovesfendonh-25_v2.webp",
+        title: "Where Are You My Love Duo",
       },
       {
         src: "/whereareyoumylovesfendonh-28 copy.avif",
