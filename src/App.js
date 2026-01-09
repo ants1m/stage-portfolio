@@ -444,8 +444,8 @@ function App() {
           top: 0,
           bottom: 0,
           left: 0,
-          width: "75%", // Wider gap to show blurred content
-          maxWidth: "400px",
+          width: "60%", // Sharper, narrower drawer
+          maxWidth: "320px", // Reduced max width too
           background: "#F2F0E9", // Beige creamy color
           padding: "2rem",
           display: "flex",

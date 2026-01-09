@@ -197,8 +197,9 @@ body {
   }
 
   /* Home Hero Image Mobile Override */
+  /* Home Hero Image Mobile Override - Removed to allow default centering or user values */
   .home-hero-image {
-    background-position: var(--mobile-pos, center) !important;
+    /* background-position: left center !important; -- Removed */
   }
 
   /* More Info Button Mobile Override */
