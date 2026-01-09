@@ -437,26 +437,26 @@ function App() {
       />
 
       {/* --- MOBILE Menu Side Drawer --- */}
+      {/* --- MOBILE Menu Side Drawer --- */}
       <div
         style={{
           position: "fixed",
           top: 0,
           bottom: 0,
           left: 0,
-          width: "85%",
+          width: "85%", // Leave gap
           maxWidth: "400px",
-          background: "#0c0c0c",
-          borderRight: "1px solid rgba(255,255,255,0.05)",
+          background: "#F2F0E9", // Beige creamy color
           padding: "2rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: "2rem",
+          gap: "2.5rem",
           zIndex: 4000,
           transform: mobileMenuExpanded ? "translateX(0)" : "translateX(-100%)",
-          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-          boxShadow: "10px 0 30px rgba(0,0,0,0.5)",
+          transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+          boxShadow: "5px 0 30px rgba(0,0,0,0.1)",
         }}
       >
         {/* Mobile Nav Items */}
@@ -468,22 +468,26 @@ function App() {
               setMobileMenuExpanded(false);
             }}
             style={{
-              fontSize: "1.2rem",
-              color: activeGallery === item.key ? "#fff" : "#888",
+              fontSize: "1rem", // Smaller, elegant
+              color: "#222",
               cursor: "pointer",
-              letterSpacing: "1.5px",
+              letterSpacing: "3px", // Wide spacing
               textTransform: "uppercase",
+              fontFamily: "'Times New Roman', serif", // Serif look
               fontWeight: activeGallery === item.key ? "600" : "400",
-              transition: "color 0.2s ease"
+              borderBottom: activeGallery === item.key ? "1px solid #222" : "none",
+              paddingBottom: "4px",
+              transition: "all 0.3s ease",
             }}
           >
             {item.label}
           </span>
         ))}
 
-        {/* Bottom branding or simple close hint */}
-        <div style={{ marginTop: "3rem", opacity: 0.3 }}>
-          <img src="/worldsonstage.png" alt="Logo" style={{ width: "80px" }} />
+        {/* Bottom branding */}
+        <div style={{ position: "absolute", bottom: "3rem", opacity: 0.8 }}>
+          {/* Using text initials JR style or just logo if dark-compatible */}
+          <img src="/worldsonstage.png" alt="Logo" style={{ width: "60px", filter: "invert(1)" }} />
         </div>
       </div>
 
