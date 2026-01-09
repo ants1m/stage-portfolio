@@ -192,7 +192,7 @@ function App() {
     if (activeGallery === "home") {
       interval = setInterval(() => {
         setCurrentHomeIndex((prev) => (prev + 1) % galleries.home.length);
-      }, 10000); // 10 seconds
+      }, 5000); // 5 seconds
     }
     return () => clearInterval(interval);
   }, [activeGallery, galleries]);
@@ -530,7 +530,7 @@ function App() {
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: "40px" }}
-                  transition={{ duration: 10, ease: "linear" }}
+                  transition={{ duration: 5, ease: "linear" }}
                   style={{
                     height: "2px",
                     background: "#fff",
