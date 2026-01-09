@@ -370,58 +370,12 @@ function App() {
 
 
 
-        {menuItems.map((item) => (
-          <motion.span
-            key={item.key}
-            whileHover={{
-              scale: 1.1,
-              color: "#fff",
-              x: 10, // Subtle shift to the right
-              textShadow: "0px 0px 8px rgba(255,255,255,0.5)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              setActiveGallery(item.key);
-              setOpen(false);
-              setShowInfo(false);
-              setMobileMenuExpanded(false); // Close menu after selection
-            }}
-            style={{
-              cursor: "pointer",
-              fontSize: activeGallery === item.key ? "1.6rem" : "1rem",
-              color: activeGallery === item.key ? "#fff" : "#888",
-              fontWeight: activeGallery === item.key ? "bold" : "normal",
-              display: "inline-block", // Required for transform
-              // Transition handled by motion
-            }}
-          >
-            {item.label}
-          </motion.span>
-        ))}
-
-
-        {/* --- Contact line --- */}
-        <a
-          href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
-          style={{
-            fontFamily: "'Times New Roman', serif",
-            fontStyle: "italic",
-            fontSize: "1rem",
-            color: "#ccc",
-            textDecoration: "none",
-            transition: "color 0.3s ease",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-          onMouseOut={(e) => (e.currentTarget.style.color = "#ccc")}
-        >
-          Contact to book your shoot
-        </a>
-
-        {/* --- More Info button --- */}
-        {infoTexts[activeGallery] && (
+        {/* --- More Info button (Moved out of legacy container) --- */}
+        {activeGallery !== "home" && infoTexts[activeGallery] && (
           <span
             className="more-info-button"
             onClick={() => setShowInfo(true)}
+            style={{ top: "6rem", right: "2rem" }} // Pushed down below header
           >
             More Info
           </span>
