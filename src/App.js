@@ -47,7 +47,7 @@ function App() {
         mobilePos: "50% 50%",
       },
       {
-        src: "/whereareyoumylovesfendonh-25_v2.webp",
+        src: "/whereareyoumylovesfendonh-25_v2.avif",
         title: "Where Are You My Love Duo",
         mobilePos: "50% 30%",
       },
@@ -156,7 +156,7 @@ function App() {
         title: "Where Are You My Love 4",
       },
       {
-        src: "/whereareyoumylovesfendonh-25_v2.webp",
+        src: "/whereareyoumylovesfendonh-25_v2.avif",
         title: "Where Are You My Love Duo",
       },
       {
