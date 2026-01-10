@@ -22,7 +22,7 @@ function App() {
   const galleries = React.useMemo(() => ({
     home: [
       {
-        src: "/whereareyoumylovesfendonh-32.png",
+        src: "/whereareyoumylovesfendonh-32_v2.webp",
         title: "Antigone 2",
         mobilePos: "20% 50%",
       },
