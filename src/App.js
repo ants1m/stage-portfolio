@@ -24,7 +24,7 @@ function App() {
       {
         src: "/whereareyoumylovesfendonh-32_v2.avif",
         title: "Antigone 2",
-        mobilePos: "20% 50%",
+        mobilePos: "10% 50%",
       },
       {
         src: "/cabaret_2-2.avif",
