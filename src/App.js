@@ -481,6 +481,7 @@ function App() {
               borderBottom: activeGallery === item.key ? "1px solid #222" : "none",
               paddingBottom: "4px",
               transition: "all 0.3s ease",
+              textAlign: "center", // Center wrapped text
             }}
           >
             {item.label}
