@@ -59,7 +59,7 @@ function App() {
     ],
     o_vasilikos: [
       {
-        src: "/o_vasiikos_theatro_simeio-102.jpg",
+        src: "/o_vasiikos_theatro_simeio-102.avif",
         title: "Vasilikos",
         // Example hotspots – adjust x/y as you like
         hotspots: [
@@ -76,7 +76,7 @@ function App() {
         ],
       },
       {
-        src: "/o_vasiikos_theatro_simeio-43.jpg",
+        src: "/o_vasiikos_theatro_simeio-43.avif",
         title: "Vasilikos 2",
       },
       {
@@ -107,19 +107,19 @@ function App() {
         ],
       },
       {
-        src: "/o_vasiikos_theatro_simeio-89.jpg",
+        src: "/o_vasiikos_theatro_simeio-89.avif",
         title: "Vasilikos 4",
       },
       {
-        src: "/o_vasiikos_theatro_simeio-18.jpg",
+        src: "/o_vasiikos_theatro_simeio-18.avif",
         title: "Vasilikos 5",
       },
       {
-        src: "/o_vasiikos_theatro_simeio-41.jpg",
+        src: "/o_vasiikos_theatro_simeio-41.avif",
         title: "Vasilikos 6",
       },
       {
-        src: "/o_vasiikos_theatro_simeio-54.jpg",
+        src: "/o_vasiikos_theatro_simeio-54.avif",
         title: "Vasilikos 7",
       },
     ],
@@ -319,7 +319,7 @@ function App() {
 
         {/* Center Logo */}
         <img
-          src="/worldsonstage.png"
+          src="/WORLDS_NEW.webp"
           alt="Logo"
           style={{ height: "50px", cursor: "pointer", opacity: 0.9, display: "block" }}
           onClick={() => setActiveGallery("home")}
@@ -404,7 +404,7 @@ function App() {
 
           {/* Logo Center */}
           <img
-            src="/worldsonstage.png"
+            src="/WORLDS_NEW.webp"
             alt="Logo"
             onClick={() => window.location.reload()}
             style={{
@@ -504,7 +504,7 @@ function App() {
         {/* Bottom branding */}
         <div style={{ position: "absolute", bottom: "3rem", opacity: 0.8 }}>
           {/* Using text initials JR style or just logo if dark-compatible */}
-          <img src="/worldsonstage.png" alt="Logo" style={{ width: "60px", filter: "invert(1)" }} />
+          <img src="/WORLDS_NEW.webp" alt="Logo" style={{ width: "60px", filter: "invert(1)" }} />
         </div>
       </div>
 
