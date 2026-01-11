@@ -383,7 +383,7 @@ function App() {
             right: 0,
             padding: "2rem 1.75rem",
             display: "flex",
-            justifyContent: "space-between",
+            // justifyContent: "space-between", // Let children flex control spacing
             alignItems: "center",
             zIndex: 3000,
           }}>
@@ -391,6 +391,7 @@ function App() {
           <span
             onClick={() => setMobileMenuExpanded(true)}
             style={{
+              flex: 1,
               fontSize: "0.85rem",
               letterSpacing: "1.5px",
               fontWeight: "500",
@@ -418,6 +419,8 @@ function App() {
           <a
             href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
             style={{
+              flex: 1,
+              textAlign: "right",
               fontSize: "0.85rem",
               letterSpacing: "1.5px",
               fontWeight: "500",
