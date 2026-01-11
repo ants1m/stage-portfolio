@@ -445,7 +445,7 @@ function App() {
           left: 0,
           right: 0,
           bottom: 0,
-          background: "rgba(0,0,0,0.3)",
+          background: "rgba(0,0,0,0.1)",
           backdropFilter: "blur(5px)",
           WebkitBackdropFilter: "blur(5px)",
           zIndex: 3999,
@@ -465,7 +465,7 @@ function App() {
           left: 0,
           width: "60%", // Sharper, narrower drawer
           maxWidth: "320px", // Reduced max width too
-          background: "rgba(91, 7, 7, 0.92)", // Deep Burgundy with slight transparency
+          background: "rgba(91, 7, 7, 0.8)", // Even more transparent
           padding: "2rem",
           display: "flex",
           flexDirection: "column",
