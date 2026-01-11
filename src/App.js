@@ -548,6 +548,33 @@ function App() {
                 backgroundSize: "cover",
               }}
             />
+          ) : activeGallery === "amphitheatriko" ? (
+            /* Banner Layout for Amphitheatriko (Stacked, No Gaps) */
+            <motion.div
+              key="amphitheatriko-list"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              style={{ marginTop: "4rem" }}
+            >
+              {currentImages.map((img, idx) => (
+                <div key={idx} style={{ width: "100%", marginBottom: 0, lineHeight: 0 }}>
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    style={{ width: "100%", display: "block", objectFit: "cover" }}
+                    onClick={() => {
+                      // Optional: Still open lightbox? User only asked for display layout.
+                      // But keeping interaction is usually good.
+                      setIndex(idx);
+                      setOpen(true);
+                      setShowHotspots(false);
+                    }}
+                  />
+                </div>
+              ))}
+            </motion.div>
           ) : (
             <motion.div
               key={activeGallery}
