@@ -465,7 +465,7 @@ function App() {
           left: 0,
           width: "60%", // Sharper, narrower drawer
           maxWidth: "320px", // Reduced max width too
-          background: "#F2F0E9", // Beige creamy color
+          background: "#5b0707", // Deep Burgundy
           padding: "2rem",
           display: "flex",
           flexDirection: "column",
@@ -488,13 +488,13 @@ function App() {
             }}
             style={{
               fontSize: "1.1rem", // Smaller, elegant
-              color: "#222",
+              color: "#F2F0E9", // Light Cream text
               cursor: "pointer",
               letterSpacing: "2px", // Wide spacing
               textTransform: "uppercase",
               fontFamily: "'PFTransport', sans-serif", // Serif look
               fontWeight: activeGallery === item.key ? "600" : "500",
-              borderBottom: activeGallery === item.key ? "1px solid #222" : "none",
+              borderBottom: activeGallery === item.key ? "1px solid #F2F0E9" : "none",
               paddingBottom: "4px",
               transition: "all 0.3s ease",
               textAlign: "center", // Center wrapped text
@@ -507,7 +507,7 @@ function App() {
         {/* Bottom branding */}
         <div style={{ position: "absolute", bottom: "3rem", opacity: 0.8 }}>
           {/* Using text initials JR style or just logo if dark-compatible */}
-          <img src="/WORLDS_NEW.webp" alt="Logo" style={{ width: "60px", filter: "invert(1)" }} />
+          <img src="/WORLDS_NEW.webp" alt="Logo" style={{ width: "60px" }} />
         </div>
       </div>
 
