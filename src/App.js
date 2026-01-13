@@ -871,12 +871,17 @@ Endgame 4 ημέρες και 7 λεπτά
             <div
               style={{
                 maxWidth: "600px",
+                width: "90%", // Responsive width
+                maxHeight: "85vh", // Limit height
+                overflowY: "auto", // Scrollable content
                 padding: "2rem",
                 color: "#fff",
                 textAlign: "center",
                 whiteSpace: "pre-line",
                 lineHeight: "1.6",
                 fontSize: "1.1rem",
+                borderRadius: "12px", // Smooth scroll container edge
+                background: "rgba(0,0,0,0.5)", // Subtle bg for contrast
               }}
             >
               {infoTexts[activeGallery]}
