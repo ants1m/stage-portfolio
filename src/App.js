@@ -142,6 +142,14 @@ function App() {
         src: "/o_vasiikos_theatro_simeio-72.avif",
         title: "Vasilikos 12",
       },
+      {
+        src: "/o_vasiikos_theatro_simeio-84.avif",
+        title: "Vasilikos 13",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-95.avif",
+        title: "Vasilikos 14",
+      },
     ],
     giagia: [
       {
@@ -199,6 +207,18 @@ function App() {
       {
         src: "/whereareyoumylovesfendonh-32 copy.avif",
         title: "Where Are You My Love 7",
+      },
+      {
+        src: "/wayml-1.avif",
+        title: "Wayml 1",
+      },
+      {
+        src: "/wayml-2.avif",
+        title: "Wayml 2",
+      },
+      {
+        src: "/wayml-3.avif",
+        title: "Wayml 3",
       },
     ],
     cabaret: [
