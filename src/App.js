@@ -163,16 +163,16 @@ function App() {
     ],
     amphitheatriko: [
       {
-        src: "/amphitheatriko-1.avif",
-        title: "Amphitheatriko 1",
-      },
-      {
         src: "/amphitheatriko-2.avif",
         title: "Amphitheatriko 2",
       },
       {
         src: "/amphitheatriko-banner.avif",
         title: "Amphitheatriko Banner",
+      },
+      {
+        src: "/amphitheatriko-1.avif",
+        title: "Amphitheatriko 1",
       },
     ],
     whereareyoumylove: [
@@ -373,7 +373,7 @@ Endgame 4 ημέρες και 7 λεπτά
     { key: "home", label: "Home" },
     { key: "o_vasilikos", label: "Ο ΒΑΣΙΛΙΚΟΣ" },
     { key: "giagia", label: "ΓΙΑΓΙΑ, ΟΛΑ ΜΙΑ ΜΕΡΑ ΘΑ ΠΕΘΑΝΟΥΝ" },
-    { key: "amphitheatriko", label: "ΑΜΦΙΘΕΑΤΡΙΚΟ" },
+    { key: "amphitheatriko", label: "ΑΜΦΙ-ΘΕΑΤΡΙΚΟ" },
     { key: "whereareyoumylove", label: "WHERE ARE YOU MY LOVE" },
     { key: "cabaret", label: "CABARET" },
     { key: "endgame", label: "ENDGAME" },
