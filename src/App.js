@@ -199,7 +199,11 @@ function App() {
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school-90.avif", title: "Cabaret 16" },
       { src: "/cabaret_teleutaia_stigmi_athens_conservatoire_drama_school.avif", title: "Cabaret 17" },
     ],
-    endgame: [],
+    endgame: [
+      { src: "/endgame-1.avif", title: "Endgame 1" },
+      { src: "/endgame-2.avif", title: "Endgame 2" },
+      { src: "/endgame-3.avif", title: "Endgame 3" },
+    ],
   }), []);
 
   // --- Slideshow Timer (10s) ---
