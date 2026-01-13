@@ -210,15 +210,15 @@ function App() {
       },
       {
         src: "/wayml-1.avif",
-        title: "Wayml 1",
+        title: "Where Are You My Love 8",
       },
       {
         src: "/wayml-2.avif",
-        title: "Wayml 2",
+        title: "Where Are You My Love 9",
       },
       {
         src: "/wayml-3.avif",
-        title: "Wayml 3",
+        title: "Where Are You My Love 10",
       },
     ],
     cabaret: [
