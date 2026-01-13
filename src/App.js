@@ -122,6 +122,26 @@ function App() {
         src: "/o_vasiikos_theatro_simeio-54.avif",
         title: "Vasilikos 7",
       },
+      {
+        src: "/o_vasiikos_theatro_simeio-48.avif",
+        title: "Vasilikos 8",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-66.avif",
+        title: "Vasilikos 9",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-80.avif",
+        title: "Vasilikos 10",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-99.avif",
+        title: "Vasilikos 11",
+      },
+      {
+        src: "/o_vasiikos_theatro_simeio-72.avif",
+        title: "Vasilikos 12",
+      },
     ],
     giagia: [
       {
