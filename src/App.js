@@ -482,7 +482,7 @@ Endgame 4 ημέρες και 7 λεπτά
 
           {/* Contact (Desktop) */}
           <a
-            href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
+            href="mailto:antsimouris@megatv.com?subject=Booking%20Enquiry"
             className="desktop-link"
             style={{
               cursor: "pointer",
@@ -549,7 +549,7 @@ Endgame 4 ημέρες και 7 λεπτά
 
           {/* Contact Right */}
           <a
-            href="mailto:an.tsimourhs@outlook.com?subject=Booking%20Enquiry"
+            href="mailto:antsimouris@megatv.com?subject=Booking%20Enquiry"
             style={{
               flex: 1,
               textAlign: "right",
