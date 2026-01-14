@@ -154,15 +154,15 @@ function App() {
     giagia: [
 
       {
-        src: "/athensconservatoire_ptuxiakes_-60.png",
+        src: "/athensconservatoire_ptuxiakes_-60.avif",
         title: "Giagia 2",
       },
       {
-        src: "/athensconservatoire_ptuxiakes_-61.png",
+        src: "/athensconservatoire_ptuxiakes_-61.avif",
         title: "Giagia 3",
       },
       {
-        src: "/athensconservatoire_ptuxiakes_-62.png",
+        src: "/athensconservatoire_ptuxiakes_-62.avif",
         title: "Giagia 4",
       },
     ],
