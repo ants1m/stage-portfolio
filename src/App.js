@@ -624,7 +624,7 @@ Endgame 4 ημέρες και 7 λεπτά
               cursor: "pointer",
               letterSpacing: "2px", // Wide spacing
               textTransform: "uppercase",
-              fontFamily: "'PFTransport', sans-serif", // Serif look
+              fontFamily: "'Inter', Arial, Helvetica, sans-serif", // Sans-serif look supporting Greek
               fontWeight: activeGallery === item.key ? "600" : "500",
               borderBottom: activeGallery === item.key ? "1px solid #F2F0E9" : "none",
               paddingBottom: "4px",
